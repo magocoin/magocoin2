@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eps
+Comment=Eps P2P Cryptocurrency
+Comment[fr]=Eps, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Eps, eşten eşe kriptografik sanal para birimi
+Exec=eps-qt %u
+Terminal=false
+Type=Application
+Icon=eps128
+MimeType=x-scheme-handler/eps;
+Categories=Office;Finance;

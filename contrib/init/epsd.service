@@ -1,0 +1,26 @@
+[Unit]
+Description=EPS's distributed currency daemon
+After=network.target
+
+[Service]
+User=eps
+Group=eps
+
+Type=forking
+PIDFile=/var/lib/epsd/epsd.pid
+
+ExecStart=/usr/bin/epsd -daemon -pid=/var/lib/epsd/epsd.pid \
+          -conf=/etc/eps/eps.conf -datadir=/var/lib/epsd
+
+ExecStop=-/usr/bin/eps-cli -conf=/etc/eps/eps.conf \
+         -datadir=/var/lib/epsd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
