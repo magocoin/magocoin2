@@ -55,5 +55,5 @@ Additional targets:
 ### Other documentation
 
 - [description.md](description.md): General description of the depends system
-- [packages.md](packages.md): Steps for adding packages
+- [packages.md](packages.md): Stmagocoin for adding packages
 

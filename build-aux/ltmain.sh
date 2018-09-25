@@ -2029,7 +2029,7 @@ usage_message="Options:
        --features           display basic configuration information and exit
        --mode=MODE          use operation mode MODE
        --no-warnings        equivalent to '-Wnone'
-       --preserve-dup-deps  don't remove duplicate dependency libraries
+       --preserve-dup-dmagocoin  don't remove duplicate dependency libraries
        --quiet, --silent    don't print informational messages
        --tag=TAG            use configuration variables from tag TAG
    -v, --verbose            print more informational messages than default
@@ -2203,7 +2203,7 @@ func_enable_tag ()
 	  # Evaluate the configuration.  Be careful to quote the path
 	  # and the sed script, to avoid splitting on whitespace, but
 	  # also don't use non-portable quotes within backquotes within
-	  # quotes we have to do it in 2 steps:
+	  # quotes we have to do it in 2 stmagocoin:
 	  extractedcf=`$SED -n -e "$sed_extractcf" < "$progpath"`
 	  eval "$extractedcf"
         else
@@ -2264,7 +2264,7 @@ libtool_options_prep ()
     opt_dry_run=false
     opt_help=false
     opt_mode=
-    opt_preserve_dup_deps=false
+    opt_preserve_dup_dmagocoin=false
     opt_quiet=false
 
     nonopt=
@@ -2327,8 +2327,8 @@ libtool_parse_options ()
                         shift
                         ;;
 
-        --preserve-dup-deps)
-                        opt_preserve_dup_deps=: ;;
+        --preserve-dup-dmagocoin)
+                        opt_preserve_dup_dmagocoin=: ;;
 
         --features)     func_features ;;
 
@@ -2419,11 +2419,11 @@ libtool_validate_options ()
       # Solaris2 added to fix http://debbugs.gnu.org/cgi/bugreport.cgi?bug=16452
       # see also: http://gcc.gnu.org/bugzilla/show_bug.cgi?id=59788
       *cygwin* | *mingw* | *pw32* | *cegcc* | *solaris2* | *os2*)
-        # don't eliminate duplications in $postdeps and $predeps
-        opt_duplicate_compiler_generated_deps=:
+        # don't eliminate duplications in $postdmagocoin and $predmagocoin
+        opt_duplicate_compiler_generated_dmagocoin=:
         ;;
       *)
-        opt_duplicate_compiler_generated_deps=$opt_preserve_dup_deps
+        opt_duplicate_compiler_generated_dmagocoin=$opt_preserve_dup_dmagocoin
         ;;
     esac
 
@@ -7492,7 +7492,7 @@ func_mode_link ()
     # Find all interdependent deplibs by searching for libraries
     # that are linked more than once (e.g. -la -lb -la)
     for deplib in $deplibs; do
-      if $opt_preserve_dup_deps; then
+      if $opt_preserve_dup_dmagocoin; then
 	case "$libs " in
 	*" $deplib "*) func_append specialdeplibs " $deplib" ;;
 	esac
@@ -7501,21 +7501,21 @@ func_mode_link ()
     done
 
     if test lib = "$linkmode"; then
-      libs="$predeps $libs $compiler_lib_search_path $postdeps"
+      libs="$predmagocoin $libs $compiler_lib_search_path $postdmagocoin"
 
-      # Compute libraries that are listed more than once in $predeps
-      # $postdeps and mark them as special (i.e., whose duplicates are
+      # Compute libraries that are listed more than once in $predmagocoin
+      # $postdmagocoin and mark them as special (i.e., whose duplicates are
       # not to be eliminated).
-      pre_post_deps=
-      if $opt_duplicate_compiler_generated_deps; then
-	for pre_post_dep in $predeps $postdeps; do
-	  case "$pre_post_deps " in
-	  *" $pre_post_dep "*) func_append specialdeplibs " $pre_post_deps" ;;
+      pre_post_dmagocoin=
+      if $opt_duplicate_compiler_generated_dmagocoin; then
+	for pre_post_dep in $predmagocoin $postdmagocoin; do
+	  case "$pre_post_dmagocoin " in
+	  *" $pre_post_dep "*) func_append specialdeplibs " $pre_post_dmagocoin" ;;
 	  esac
-	  func_append pre_post_deps " $pre_post_dep"
+	  func_append pre_post_dmagocoin " $pre_post_dep"
 	done
       fi
-      pre_post_deps=
+      pre_post_dmagocoin=
     fi
 
     deplibs=
@@ -7657,7 +7657,7 @@ func_mode_link ()
 	    # If $allow_libtool_libs_with_static_runtimes && $deplib is a stdlib,
 	    # We need to do some special things here, and not later.
 	    if test yes = "$allow_libtool_libs_with_static_runtimes"; then
-	      case " $predeps $postdeps " in
+	      case " $predmagocoin $postdmagocoin " in
 	      *" $deplib "*)
 		if func_lalib_p "$lib"; then
 		  library_names=
@@ -7896,7 +7896,7 @@ func_mode_link ()
 	    tmp_libs=
 	    for deplib in $dependency_libs; do
 	      deplibs="$deplib $deplibs"
-	      if $opt_preserve_dup_deps; then
+	      if $opt_preserve_dup_dmagocoin; then
 		case "$tmp_libs " in
 		*" $deplib "*) func_append specialdeplibs " $deplib" ;;
 		esac
@@ -8074,7 +8074,7 @@ func_mode_link ()
 	      # or/and link against static libraries
 	      newdependency_libs="$deplib $newdependency_libs"
 	    fi
-	    if $opt_preserve_dup_deps; then
+	    if $opt_preserve_dup_dmagocoin; then
 	      case "$tmp_libs " in
 	      *" $deplib "*) func_append specialdeplibs " $deplib" ;;
 	      esac
@@ -8469,7 +8469,7 @@ func_mode_link ()
                    func_resolve_sysroot "$func_stripname_result";;
               *) func_resolve_sysroot "$deplib" ;;
             esac
-	    if $opt_preserve_dup_deps; then
+	    if $opt_preserve_dup_dmagocoin; then
 	      case "$tmp_libs " in
 	      *" $func_resolve_sysroot_result "*)
                 func_append specialdeplibs " $func_resolve_sysroot_result" ;;
@@ -8634,7 +8634,7 @@ func_mode_link ()
 	done # for var
       fi
 
-      # Add Sun CC postdeps if required:
+      # Add Sun CC postdmagocoin if required:
       test CXX = "$tagname" && {
         case $host_os in
         linux*)
@@ -8643,7 +8643,7 @@ func_mode_link ()
             func_suncc_cstd_abi
 
             if test no != "$suncc_use_cstd_abi"; then
-              func_append postdeps ' -library=Cstd -library=Crun'
+              func_append postdmagocoin ' -library=Cstd -library=Crun'
             fi
             ;;
           esac
@@ -8656,7 +8656,7 @@ func_mode_link ()
             func_suncc_cstd_abi
 
             if test no != "$suncc_use_cstd_abi"; then
-              func_append postdeps ' -library=Cstd -library=Crun'
+              func_append postdmagocoin ' -library=Cstd -library=Crun'
             fi
             ;;
           esac
@@ -8668,7 +8668,7 @@ func_mode_link ()
       # (they stay in deplibs)
       tmp_libs=
       for i in $dependency_libs; do
-	case " $predeps $postdeps $compiler_lib_search_path " in
+	case " $predmagocoin $postdmagocoin $compiler_lib_search_path " in
 	*" $i "*)
 	  i=
 	  ;;
@@ -9162,7 +9162,7 @@ func_mode_link ()
 	versuffix=
 	major=
 	newdeplibs=
-	droppeddeps=no
+	droppeddmagocoin=no
 	case $deplibs_check_method in
 	pass_all)
 	  # Don't check for shared/static.  Everything works.
@@ -9190,7 +9190,7 @@ EOF
 		func_stripname -l '' "$i"
 		name=$func_stripname_result
 		if test yes = "$allow_libtool_libs_with_static_runtimes"; then
-		  case " $predeps $postdeps " in
+		  case " $predmagocoin $postdmagocoin " in
 		  *" $i "*)
 		    func_append newdeplibs " $i"
 		    i=
@@ -9205,7 +9205,7 @@ EOF
 		  if test `expr "$ldd_output" : ".*$deplib_match"` -ne 0; then
 		    func_append newdeplibs " $i"
 		  else
-		    droppeddeps=yes
+		    droppeddmagocoin=yes
 		    echo
 		    $ECHO "*** Warning: dynamic linker does not accept needed library $i."
 		    echo "*** I have the capability to make that library automatically link in when"
@@ -9233,7 +9233,7 @@ EOF
 		if $LTCC $LTCFLAGS -o conftest conftest.c $i; then
 		  ldd_output=`ldd conftest`
 		  if test yes = "$allow_libtool_libs_with_static_runtimes"; then
-		    case " $predeps $postdeps " in
+		    case " $predmagocoin $postdmagocoin " in
 		    *" $i "*)
 		      func_append newdeplibs " $i"
 		      i=
@@ -9248,7 +9248,7 @@ EOF
 		    if test `expr "$ldd_output" : ".*$deplib_match"` -ne 0; then
 		      func_append newdeplibs " $i"
 		    else
-		      droppeddeps=yes
+		      droppeddmagocoin=yes
 		      echo
 		      $ECHO "*** Warning: dynamic linker does not accept needed library $i."
 		      echo "*** I have the capability to make that library automatically link in when"
@@ -9259,7 +9259,7 @@ EOF
 		    fi
 		  fi
 		else
-		  droppeddeps=yes
+		  droppeddmagocoin=yes
 		  echo
 		  $ECHO "*** Warning!  Library $i is needed by this library but I was not able to"
 		  echo "*** make it link in!  You will probably need to install it or some"
@@ -9283,7 +9283,7 @@ EOF
 	      func_stripname -l '' "$a_deplib"
 	      name=$func_stripname_result
 	      if test yes = "$allow_libtool_libs_with_static_runtimes"; then
-		case " $predeps $postdeps " in
+		case " $predmagocoin $postdmagocoin " in
 		*" $a_deplib "*)
 		  func_append newdeplibs " $a_deplib"
 		  a_deplib=
@@ -9336,7 +9336,7 @@ EOF
 		done
 	      fi
 	      if test -n "$a_deplib"; then
-		droppeddeps=yes
+		droppeddmagocoin=yes
 		echo
 		$ECHO "*** Warning: linker path does not have real file for library $a_deplib."
 		echo "*** I have the capability to make that library automatically link in when"
@@ -9367,7 +9367,7 @@ EOF
 	      func_stripname -l '' "$a_deplib"
 	      name=$func_stripname_result
 	      if test yes = "$allow_libtool_libs_with_static_runtimes"; then
-		case " $predeps $postdeps " in
+		case " $predmagocoin $postdmagocoin " in
 		*" $a_deplib "*)
 		  func_append newdeplibs " $a_deplib"
 		  a_deplib=
@@ -9390,7 +9390,7 @@ EOF
 		done
 	      fi
 	      if test -n "$a_deplib"; then
-		droppeddeps=yes
+		droppeddmagocoin=yes
 		echo
 		$ECHO "*** Warning: linker path does not have real file for library $a_deplib."
 		echo "*** I have the capability to make that library automatically link in when"
@@ -9416,7 +9416,7 @@ EOF
 	  newdeplibs=
 	  tmp_deplibs=`$ECHO " $deplibs" | $SED 's/ -lc$//; s/ -[LR][^ ]*//g'`
 	  if test yes = "$allow_libtool_libs_with_static_runtimes"; then
-	    for i in $predeps $postdeps; do
+	    for i in $predmagocoin $postdmagocoin; do
 	      # can't use Xsed below, because $i might contain '/'
 	      tmp_deplibs=`$ECHO " $tmp_deplibs" | $SED "s|$i||"`
 	    done
@@ -9430,7 +9430,7 @@ EOF
 	      echo "*** Warning: inter-library dependencies are not known to be supported."
 	    fi
 	    echo "*** All declared inter-library dependencies are being dropped."
-	    droppeddeps=yes
+	    droppeddmagocoin=yes
 	    ;;
 	  esac
 	  ;;
@@ -9448,7 +9448,7 @@ EOF
 	  ;;
 	esac
 
-	if test yes = "$droppeddeps"; then
+	if test yes = "$droppeddmagocoin"; then
 	  if test yes = "$module"; then
 	    echo
 	    echo "*** Warning: libtool could not satisfy all declared inter-library"

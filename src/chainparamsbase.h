@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between eps-cli and epsd)
- * of a given instance of the Eps system.
+ * CBaseChainParams defines the base parameters (shared between magocoin-cli and magocoind)
+ * of a given instance of the Magocoin system.
  */
 class CBaseChainParams
 {

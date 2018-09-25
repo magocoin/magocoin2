@@ -9,7 +9,7 @@
 #include <set>
 #include <utility>
 
-/** STL-like set container that only keeps the most recent N elements. */
+/** STL-like set container that only kemagocoin the most recent N elements. */
 template <typename T>
 class mruset
 {

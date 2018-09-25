@@ -83,7 +83,7 @@ dnl Parse OPTIONS
 _LT_SET_OPTIONS([$0], [$1])
 
 # This can be used to rebuild libtool when needed
-LIBTOOL_DEPS=$ltmain
+LIBTOOL_Dmagocoin=$ltmain
 
 # Always use our own libtool.
 LIBTOOL='$(SHELL) $(top_builddir)/libtool'
@@ -7413,7 +7413,7 @@ if test yes != "$_lt_caught_CXX_error"; then
     ## There is no encapsulation within the following macros, do not change
     ## the running order or otherwise move them around unless you know exactly
     ## what you are doing...
-    _LT_SYS_HIDDEN_LIBDEPS($1)
+    _LT_SYS_HIDDEN_LIBDmagocoin($1)
     _LT_COMPILER_PIC($1)
     _LT_COMPILER_C_O($1)
     _LT_COMPILER_FILE_LOCKS($1)
@@ -7464,20 +7464,20 @@ func_stripname_cnf ()
 ])# _LT_FUNC_STRIPNAME_CNF
 
 
-# _LT_SYS_HIDDEN_LIBDEPS([TAGNAME])
+# _LT_SYS_HIDDEN_LIBDmagocoin([TAGNAME])
 # ---------------------------------
 # Figure out "hidden" library dependencies from verbose
 # compiler output when linking a shared library.
 # Parse the compiler output and extract the necessary
 # objects, libraries and library flags.
-m4_defun([_LT_SYS_HIDDEN_LIBDEPS],
+m4_defun([_LT_SYS_HIDDEN_LIBDmagocoin],
 [m4_require([_LT_FILEUTILS_DEFAULTS])dnl
 AC_REQUIRE([_LT_FUNC_STRIPNAME_CNF])dnl
 # Dependencies to place before and after the object being linked:
 _LT_TAGVAR(predep_objects, $1)=
 _LT_TAGVAR(postdep_objects, $1)=
-_LT_TAGVAR(predeps, $1)=
-_LT_TAGVAR(postdeps, $1)=
+_LT_TAGVAR(predmagocoin, $1)=
+_LT_TAGVAR(postdmagocoin, $1)=
 _LT_TAGVAR(compiler_lib_search_path, $1)=
 
 dnl we can't use the lt_simple_compile_test_code here,
@@ -7529,7 +7529,7 @@ func foo() {
 _LT_EOF
 ])
 
-_lt_libdeps_save_CFLAGS=$CFLAGS
+_lt_libdmagocoin_save_CFLAGS=$CFLAGS
 case "$CC $CFLAGS " in #(
 *\ -flto*\ *) CFLAGS="$CFLAGS -fno-lto" ;;
 *\ -fwhopr*\ *) CFLAGS="$CFLAGS -fno-whopr" ;;
@@ -7544,7 +7544,7 @@ if AC_TRY_EVAL(ac_compile); then
 
   # Sentinel used to keep track of whether or not we are before
   # the conftest object file.
-  pre_test_object_deps_done=no
+  pre_test_object_dmagocoin_done=no
 
   for p in `eval "$output_verbose_link_cmd"`; do
     case $prev$p in
@@ -7569,11 +7569,11 @@ if AC_TRY_EVAL(ac_compile); then
        case $p in
        =*) func_stripname_cnf '=' '' "$p"; p=$lt_sysroot$func_stripname_result ;;
        esac
-       if test no = "$pre_test_object_deps_done"; then
+       if test no = "$pre_test_object_dmagocoin_done"; then
 	 case $prev in
 	 -L | -R)
 	   # Internal compiler library paths should come after those
-	   # provided the user.  The postdeps already come after the
+	   # provided the user.  The postdmagocoin already come after the
 	   # user supplied libs so there is no need to process them.
 	   if test -z "$_LT_TAGVAR(compiler_lib_search_path, $1)"; then
 	     _LT_TAGVAR(compiler_lib_search_path, $1)=$prev$p
@@ -7585,10 +7585,10 @@ if AC_TRY_EVAL(ac_compile); then
 	 # linked, so don't bother handling this case.
 	 esac
        else
-	 if test -z "$_LT_TAGVAR(postdeps, $1)"; then
-	   _LT_TAGVAR(postdeps, $1)=$prev$p
+	 if test -z "$_LT_TAGVAR(postdmagocoin, $1)"; then
+	   _LT_TAGVAR(postdmagocoin, $1)=$prev$p
 	 else
-	   _LT_TAGVAR(postdeps, $1)="${_LT_TAGVAR(postdeps, $1)} $prev$p"
+	   _LT_TAGVAR(postdmagocoin, $1)="${_LT_TAGVAR(postdmagocoin, $1)} $prev$p"
 	 fi
        fi
        prev=
@@ -7599,11 +7599,11 @@ if AC_TRY_EVAL(ac_compile); then
        # This assumes that the test object file only shows up
        # once in the compiler output.
        if test "$p" = "conftest.$objext"; then
-	 pre_test_object_deps_done=yes
+	 pre_test_object_dmagocoin_done=yes
 	 continue
        fi
 
-       if test no = "$pre_test_object_deps_done"; then
+       if test no = "$pre_test_object_dmagocoin_done"; then
 	 if test -z "$_LT_TAGVAR(predep_objects, $1)"; then
 	   _LT_TAGVAR(predep_objects, $1)=$p
 	 else
@@ -7630,7 +7630,7 @@ else
 fi
 
 $RM -f confest.$objext
-CFLAGS=$_lt_libdeps_save_CFLAGS
+CFLAGS=$_lt_libdmagocoin_save_CFLAGS
 
 # PORTME: override above test on systems where it is broken
 m4_if([$1], [CXX],
@@ -7640,12 +7640,12 @@ interix[[3-9]]*)
   # hack all around it, let's just trust "g++" to DTRT.
   _LT_TAGVAR(predep_objects,$1)=
   _LT_TAGVAR(postdep_objects,$1)=
-  _LT_TAGVAR(postdeps,$1)=
+  _LT_TAGVAR(postdmagocoin,$1)=
   ;;
 esac
 ])
 
-case " $_LT_TAGVAR(postdeps, $1) " in
+case " $_LT_TAGVAR(postdmagocoin, $1) " in
 *" -lc "*) _LT_TAGVAR(archive_cmds_need_lc, $1)=no ;;
 esac
  _LT_TAGVAR(compiler_lib_search_dirs, $1)=
@@ -7658,12 +7658,12 @@ _LT_TAGDECL([], [predep_objects], [1],
     [Dependencies to place before and after the objects being linked to
     create a shared library])
 _LT_TAGDECL([], [postdep_objects], [1])
-_LT_TAGDECL([], [predeps], [1])
-_LT_TAGDECL([], [postdeps], [1])
+_LT_TAGDECL([], [predmagocoin], [1])
+_LT_TAGDECL([], [postdmagocoin], [1])
 _LT_TAGDECL([], [compiler_lib_search_path], [1],
     [The library search path used internally by the compiler when linking
     a shared library])
-])# _LT_SYS_HIDDEN_LIBDEPS
+])# _LT_SYS_HIDDEN_LIBDmagocoin
 
 
 # _LT_LANG_F77_CONFIG([TAG])
@@ -7920,7 +7920,7 @@ if test yes != "$_lt_disable_FC"; then
     ## There is no encapsulation within the following macros, do not change
     ## the running order or otherwise move them around unless you know exactly
     ## what you are doing...
-    _LT_SYS_HIDDEN_LIBDEPS($1)
+    _LT_SYS_HIDDEN_LIBDmagocoin($1)
     _LT_COMPILER_PIC($1)
     _LT_COMPILER_C_O($1)
     _LT_COMPILER_FILE_LOCKS($1)

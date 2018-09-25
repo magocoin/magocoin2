@@ -860,7 +860,7 @@ class Benchmark {
     if (thread->tid > 0) {
       ReadRandom(thread);
     } else {
-      // Special thread that keeps writing until other threads are done.
+      // Special thread that kemagocoin writing until other threads are done.
       RandomGenerator gen;
       while (true) {
         {

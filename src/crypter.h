@@ -115,7 +115,7 @@ bool EncryptAES256(const SecureString& sKey, const SecureString& sPlaintext, con
 bool DecryptAES256(const SecureString& sKey, const std::string& sCiphertext, const std::string& sIV, SecureString& sPlaintext);
 
 
-/** Keystore which keeps the private keys encrypted.
+/** Keystore which kemagocoin the private keys encrypted.
  * It derives from the basic key store, which is used if no encryption is active.
  */
 class CCryptoKeyStore : public CBasicKeyStore
@@ -129,7 +129,7 @@ private:
     //! if fUseCrypto is false, vMasterKey must be empty
     bool fUseCrypto;
 
-    //! keeps track of whether Unlock has run a thorough check before
+    //! kemagocoin track of whether Unlock has run a thorough check before
     bool fDecryptionThoroughlyChecked;
 
 protected:

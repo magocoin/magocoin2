@@ -95,7 +95,7 @@ public:
 };
 
 /**
- * EPS RPC command dispatcher.
+ * magocoin RPC command dispatcher.
  */
 class CRPCTable
 {

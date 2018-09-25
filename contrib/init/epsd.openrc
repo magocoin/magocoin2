@@ -2,24 +2,24 @@
 
 # backward compatibility for existing gentoo layout
 #
-if [ -d "/var/lib/eps/.eps" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/eps/.eps"
+if [ -d "/var/lib/magocoin/.magocoin" ]; then
+	BITCOIND_DEFAULT_DATADIR="/var/lib/magocoin/.magocoin"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/epsd"
+	BITCOIND_DEFAULT_DATADIR="/var/lib/magocoind"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/eps/eps.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/epsd}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/epsd.pid}
+BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/magocoin/magocoin.conf}
+BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/magocoind}
+BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/magocoind.pid}
 BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-eps}
-BITCOIND_GROUP=${BITCOIND_GROUP:-eps}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/epsd}
+BITCOIND_USER=${BITCOIND_USER:-magocoin}
+BITCOIND_GROUP=${BITCOIND_GROUP:-magocoin}
+BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/magocoind}
 
-name="Eps Daemon"
-description="EPS crypto-currency p2p network daemon"
+name="Magocoin Daemon"
+description="magocoin crypto-currency p2p network daemon"
 
-command="/usr/bin/epsd"
+command="/usr/bin/magocoind"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
 		-conf=\"${BITCOIND_CONFIGFILE}\" \
 		-datadir=\"${BITCOIND_DATADIR}\" \
@@ -65,7 +65,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run epsd."
+		eerror "ERROR: You must set a secure rpcpassword to run magocoind."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
@@ -78,7 +78,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Eps Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Magocoin Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

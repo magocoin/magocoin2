@@ -64,15 +64,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += epsd
+  bin_PROGRAMS += magocoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += eps-cli eps-tx
+  bin_PROGRAMS += magocoin-cli magocoin-tx
 endif
 
 .PHONY: FORCE
-# eps core #
+# magocoin core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   addrman.h \
@@ -180,7 +180,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between epsd and eps-qt
+# server: shared between magocoind and magocoin-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -224,7 +224,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between epsd and eps-qt, but only linked
+# wallet: shared between magocoind and magocoin-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -305,7 +305,7 @@ univalue_libbitcoin_univalue_a_SOURCES = \
   univalue/univalue_escapes.h \
   univalue/univalue.h
 
-# common: shared between epsd, and eps-qt and non-server tools
+# common: shared between magocoind, and magocoin-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   allocators.cpp \
@@ -361,7 +361,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between eps-cli and eps-qt
+# cli: shared between magocoin-cli and magocoin-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -371,7 +371,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-epsd_LDADD = \
+magocoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -382,40 +382,40 @@ epsd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-epsd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+magocoind_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-epsd_LDADD += libbitcoin_wallet.a
+magocoind_LDADD += libbitcoin_wallet.a
 endif
-epsd_SOURCES = epsd.cpp
+magocoind_SOURCES = magocoind.cpp
 #
 
 if TARGET_WINDOWS
-epsd_SOURCES += epsd-res.rc
+magocoind_SOURCES += magocoind-res.rc
 endif
 
-epsd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-epsd_CPPFLAGS = $(BITCOIN_INCLUDES)
-epsd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+magocoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+magocoind_CPPFLAGS = $(BITCOIN_INCLUDES)
+magocoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# eps-cli binary #
-eps_cli_LDADD = \
+# magocoin-cli binary #
+magocoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
   $(SSL_LIBS) \
   $(CRYPTO_LIBS)
 
-eps_cli_SOURCES = \
-  eps-cli.cpp
+magocoin_cli_SOURCES = \
+  magocoin-cli.cpp
 
-eps_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+magocoin_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
 
-# eps-tx binary #
-eps_tx_LDADD = \
+# magocoin-tx binary #
+magocoin_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -424,15 +424,15 @@ eps_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-eps_tx_SOURCES = eps-tx.cpp
-eps_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+magocoin_tx_SOURCES = magocoin-tx.cpp
+magocoin_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-eps_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+magocoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-eps_cli_SOURCES += eps-cli-res.rc
+magocoin_cli_SOURCES += magocoin-cli-res.rc
 endif
-eps_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+magocoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

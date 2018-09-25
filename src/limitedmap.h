@@ -8,7 +8,7 @@
 #include <assert.h>
 #include <map>
 
-/** STL-like map container that only keeps the N elements with the highest value. */
+/** STL-like map container that only kemagocoin the N elements with the highest value. */
 template <typename K, typename V>
 class limitedmap
 {

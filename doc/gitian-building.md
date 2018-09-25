@@ -1,9 +1,9 @@
 Gitian building
 ================
 
-*Setup instructions for a gitian build of EPS using a Debian VM or physical system.*
+*Setup instructions for a gitian build of magocoin using a Debian VM or physical system.*
 
-Gitian is the deterministic build process that is used to build the EPS
+Gitian is the deterministic build process that is used to build the magocoin
 Core executables. It provides a way to be reasonably sure that the
 executables are really built from source on GitHub. It also makes sure that
 the same, tested dependencies are used and statically built into the executable.
@@ -11,10 +11,10 @@ the same, tested dependencies are used and statically built into the executable.
 Multiple developers build the source code by following a specific descriptor
 ("recipe"), cryptographically sign the result, and upload the resulting signature.
 These results are compared and only if they match, the build is accepted and uploaded
-to eps-crypto.com.
+to magocoin-crypto.com.
 
 More independent gitian builders are needed, which is why I wrote this
-guide. It is preferred to follow these steps yourself instead of using someone else's
+guide. It is preferred to follow these stmagocoin yourself instead of using someone else's
 VM image to avoid 'contaminating' the build.
 
 Table of Contents
@@ -26,7 +26,7 @@ Table of Contents
 - [Installing gitian](#installing-gitian)
 - [Setting up gitian images](#setting-up-gitian-images)
 - [Getting and building the inputs](#getting-and-building-the-inputs)
-- [Building EPS](#building-eps)
+- [Building magocoin](#building-magocoin)
 - [Building an alternative repository](#building-an-alternative-repository)
 - [Signing externally](#signing-externally)
 - [Uploading signatures](#uploading-signatures)
@@ -254,14 +254,14 @@ echo 'export LXC_GUEST_IP=10.0.3.5' >> /home/debian/.profile
 reboot
 ```
 
-At the end the VM is rebooted to make sure that the changes take effect. The steps in this
+At the end the VM is rebooted to make sure that the changes take effect. The stmagocoin in this
 section need only to be performed once.
 
 Installing gitian
 ------------------
 
 Re-login as the user `debian` that was created during installation.
-The rest of the steps in this guide will be performed as that user.
+The rest of the stmagocoin in this guide will be performed as that user.
 
 There is no `python-vm-builder` package in Debian, so we need to install it from source ourselves,
 
@@ -277,12 +277,12 @@ cd ..
 
 **Note**: When sudo asks for a password, enter the password for the user *debian* not for *root*.
 
-Clone the git repositories for eps and gitian and then checkout the eps version that you want to build.
+Clone the git repositories for magocoin and gitian and then checkout the magocoin version that you want to build.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/eps-crypto/eps.git
-cd eps
+git clone https://github.com/magocoin-crypto/magocoin.git
+cd magocoin
 git checkout v${VERSION}
 cd ..
 ```
@@ -321,16 +321,16 @@ There will be a lot of warnings printed during build of the images. These can be
 Getting and building the inputs
 --------------------------------
 
-Follow the instructions in [doc/release-process.md](release-process.md) in the eps repository
+Follow the instructions in [doc/release-process.md](release-process.md) in the magocoin repository
 under 'Fetch and build inputs' to install sources which require manual intervention. Also follow
 the next step: 'Seed the Gitian sources cache', which will fetch all necessary source files allowing
 for gitian to work offline.
 
-Building EPS
+Building magocoin
 ----------------
 
-To build EPS (for Linux, OSX and Windows) just follow the steps under 'perform
-gitian builds' in [doc/release-process.md](release-process.md) in the eps repository.
+To build magocoin (for Linux, OSX and Windows) just follow the stmagocoin under 'perform
+gitian builds' in [doc/release-process.md](release-process.md) in the magocoin repository.
 
 This may take a long time as it also builds the dependencies needed for each descriptor.
 These dependencies will be cached after a successful build to avoid rebuilding them when possible.
@@ -345,12 +345,12 @@ tail -f var/build.log
 Output from `gbuild` will look something like
 
 ```bash
-    Initialized empty Git repository in /home/debian/gitian-builder/inputs/eps/.git/
+    Initialized empty Git repository in /home/debian/gitian-builder/inputs/magocoin/.git/
     remote: Reusing existing pack: 35606, done.
     remote: Total 35606 (delta 0), reused 0 (delta 0)
     Receiving objects: 100% (35606/35606), 26.52 MiB | 4.28 MiB/s, done.
     Resolving deltas: 100% (25724/25724), done.
-    From https://github.com/eps-crypto/eps
+    From https://github.com/magocoin-crypto/magocoin
     ... (new tags, new branch etc)
     --- Building for precise x86_64 ---
     Stopping target if it is up
@@ -377,28 +377,28 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/eclipseadnetwork/eps.git
+URL=https://github.com/magocoinadnetwork/magocoin.git
 COMMIT=b616fb8ef0d49a919b72b0388b091aaec5849b96
-./bin/gbuild --commit eps=${COMMIT} --url eps=${URL} ../eps/contrib/gitian-descriptors/gitian-linux.yml
-./bin/gbuild --commit eps=${COMMIT} --url eps=${URL} ../eps/contrib/gitian-descriptors/gitian-win.yml
-./bin/gbuild --commit eps=${COMMIT} --url eps=${URL} ../eps/contrib/gitian-descriptors/gitian-osx.yml
+./bin/gbuild --commit magocoin=${COMMIT} --url magocoin=${URL} ../magocoin/contrib/gitian-descriptors/gitian-linux.yml
+./bin/gbuild --commit magocoin=${COMMIT} --url magocoin=${URL} ../magocoin/contrib/gitian-descriptors/gitian-win.yml
+./bin/gbuild --commit magocoin=${COMMIT} --url magocoin=${URL} ../magocoin/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Signing externally
 -------------------
 
 If you want to do the PGP signing on another device that's also possible; just define `SIGNER` as mentioned
-and follow the steps in the build process as normal.
+and follow the stmagocoin in the build process as normal.
 
-    gpg: skipped "epscoin": secret key not available
+    gpg: skipped "magocoincoin": secret key not available
 
 When you execute `gsign` you will get an error from GPG, which can be ignored. Copy the resulting `.assert` files
 in `gitian.sigs` to your signing machine and do
 
 ```bash
-    gpg --detach-sign ${VERSION}-linux/${SIGNER}/eps-build.assert
-    gpg --detach-sign ${VERSION}-win/${SIGNER}/eps-build.assert
-    gpg --detach-sign ${VERSION}-osx/${SIGNER}/eps-build.assert
+    gpg --detach-sign ${VERSION}-linux/${SIGNER}/magocoin-build.assert
+    gpg --detach-sign ${VERSION}-win/${SIGNER}/magocoin-build.assert
+    gpg --detach-sign ${VERSION}-osx/${SIGNER}/magocoin-build.assert
 ```
 
 This will create the `.sig` files that can be committed together with the `.assert` files to assert your
@@ -408,6 +408,6 @@ Uploading signatures (not yet implemented)
 ---------------------
 
 In the future it will be possible to push your signatures (both the `.assert` and `.assert.sig` files) to the
-[eps/gitian.sigs](https://github.com/eps-crypto/gitian.sigs/) repository, or if that's not possible to create a pull
+[magocoin/gitian.sigs](https://github.com/magocoin-crypto/gitian.sigs/) repository, or if that's not possible to create a pull
 request.
 There will be an official announcement when this repository is online.

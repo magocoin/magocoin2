@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1743,13 +1743,13 @@ bool CWallet::SelectCoins(const CAmount& nTargetValue, set<pair<const CWalletTx*
         return (nValueRet >= nTargetValue);
     }
 
-    //if we're doing only denominated, we need to round up to the nearest .1 Eps
+    //if we're doing only denominated, we need to round up to the nearest .1 Magocoin
     if (coin_type == ONLY_DENOMINATED) {
         // Make outputs by looping through denominations, from large to small
         BOOST_FOREACH (CAmount v, obfuScationDenominations) {
             BOOST_FOREACH (const COutput& out, vCoins) {
                 if (out.tx->vout[out.i].nValue == v                                               //make sure it's the denom we're looking for
-                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 Eps over
+                    && nValueRet + out.tx->vout[out.i].nValue < nTargetValue + (0.1 * COIN) + 100 //round the amount up to .1 Magocoin over
                     ) {
                     CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
                     int rounds = GetInputObfuscationRounds(vin);
@@ -1809,11 +1809,11 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
             // Function returns as follows:
             //
-            // bit 0 - 1000 Eps+1
-            // bit 1 - 100 Eps+1
-            // bit 2 - 10 Eps+1
-            // bit 3 - 1 Eps+1
-            // bit 4 - .1 Eps+1
+            // bit 0 - 1000 Magocoin+1
+            // bit 1 - 100 Magocoin+1
+            // bit 2 - 10 Magocoin+1
+            // bit 3 - 1 Magocoin+1
+            // bit 4 - .1 Magocoin+1
 
             CTxIn vin = CTxIn(out.tx->GetHash(), out.i);
 
@@ -2169,9 +2169,9 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                     if (coin_type == ALL_COINS) {
                         strFailReason = _("Insufficient funds.");
                     } else if (coin_type == ONLY_NOT5000IFMN) {
-                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 Eps.");
+                        strFailReason = _("Unable to locate enough funds for this transaction that are not equal 10000 Magocoin.");
                     } else if (coin_type == ONLY_NONDENOMINATED_NOT5000IFMN) {
-                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 Eps.");
+                        strFailReason = _("Unable to locate enough Obfuscation non-denominated funds for this transaction that are not equal 10000 Magocoin.");
                     } else {
                         strFailReason = _("Unable to locate enough Obfuscation denominated funds for this transaction.");
                         strFailReason += " " + _("Obfuscation uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.");
@@ -2209,7 +2209,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                 if (nChange > 0) {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-eps-address
+                    // change transaction isn't always pay-to-magocoin-address
                     CScript scriptChange;
 
                     // coin control: send change to custom address
@@ -2641,8 +2641,8 @@ string CWallet::PrepareObfuscationDenominate(int minRounds, int maxRounds)
     // NOTE: No need to randomize order of inputs because they were
     // initially shuffled in CWallet::SelectCoinsByDenominations already.
     int nStep = 0;
-    int nStepsMax = 5 + GetRandInt(5);
-    while (nStep < nStepsMax) {
+    int nStmagocoinMax = 5 + GetRandInt(5);
+    while (nStep < nStmagocoinMax) {
         BOOST_FOREACH (CAmount v, obfuScationDenominations) {
             // only use the ones that are approved
             bool fAccepted = false;
@@ -3687,9 +3687,9 @@ string CWallet::SendMoney(const CTxDestination &address, CAmount nValue, CWallet
     return "";
 }
 
-bool CWallet::IsMine(const string& eps_address)
+bool CWallet::IsMine(const string& magocoin_address)
 {
-    CBitcoinAddress check_address(eps_address);
+    CBitcoinAddress check_address(magocoin_address);
     CTxDestination dest = check_address.Get();
     isminetype mine = pwalletMain ? ::IsMine(*pwalletMain, dest) : ISMINE_NO;
 

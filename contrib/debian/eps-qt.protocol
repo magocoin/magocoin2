@@ -1,6 +1,6 @@
 [Protocol]
-exec=eps-qt '%u'
-protocol=eps
+exec=magocoin-qt '%u'
+protocol=magocoin
 input=none
 output=none
 helper=true

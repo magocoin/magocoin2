@@ -18,7 +18,7 @@ config.status
 *.tar.gz
 *.la
 libtool
-.deps/
+.dmagocoin/
 .dirstamp
 build-aux/
 *.lo

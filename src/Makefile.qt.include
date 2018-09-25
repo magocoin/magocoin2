@@ -1,32 +1,32 @@
-bin_PROGRAMS += qt/eps-qt
+bin_PROGRAMS += qt/magocoin-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# eps qt core #
+# magocoin qt core #
 QT_TS = \
-  qt/locale/eps_bg.ts \
-  qt/locale/eps_ca.ts \
-  qt/locale/eps_cs.ts \
-  qt/locale/eps_da.ts \
-  qt/locale/eps_de.ts \
-  qt/locale/eps_en.ts \
-  qt/locale/eps_en_US.ts \
-  qt/locale/eps_es.ts \
-  qt/locale/eps_fi.ts \
-  qt/locale/eps_fr_FR.ts \
-  qt/locale/eps_it.ts \
-  qt/locale/eps_ja.ts \
-  qt/locale/eps_ko_KR.ts \
-  qt/locale/eps_nl.ts \
-  qt/locale/eps_pl.ts \
-  qt/locale/eps_pt.ts \
-  qt/locale/eps_pt_BR.ts \
-  qt/locale/eps_ro_RO.ts \
-  qt/locale/eps_ru.ts \
-  qt/locale/eps_sk.ts \
-  qt/locale/eps_sv.ts \
-  qt/locale/eps_uk.ts \
-  qt/locale/eps_zh_CN.ts \
-  qt/locale/eps_zh_TW.ts
+  qt/locale/magocoin_bg.ts \
+  qt/locale/magocoin_ca.ts \
+  qt/locale/magocoin_cs.ts \
+  qt/locale/magocoin_da.ts \
+  qt/locale/magocoin_de.ts \
+  qt/locale/magocoin_en.ts \
+  qt/locale/magocoin_en_US.ts \
+  qt/locale/magocoin_es.ts \
+  qt/locale/magocoin_fi.ts \
+  qt/locale/magocoin_fr_FR.ts \
+  qt/locale/magocoin_it.ts \
+  qt/locale/magocoin_ja.ts \
+  qt/locale/magocoin_ko_KR.ts \
+  qt/locale/magocoin_nl.ts \
+  qt/locale/magocoin_pl.ts \
+  qt/locale/magocoin_pt.ts \
+  qt/locale/magocoin_pt_BR.ts \
+  qt/locale/magocoin_ro_RO.ts \
+  qt/locale/magocoin_ru.ts \
+  qt/locale/magocoin_sk.ts \
+  qt/locale/magocoin_sv.ts \
+  qt/locale/magocoin_uk.ts \
+  qt/locale/magocoin_zh_CN.ts \
+  qt/locale/magocoin_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -104,16 +104,16 @@ BITCOIN_MM = \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/eps.moc \
+  qt/magocoin.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_eps.cpp
-QT_QRC = qt/eps.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_eps_locale.cpp
-QT_QRC_LOCALE = qt/eps_locale.qrc
+QT_QRC_CPP = qt/qrc_magocoin.cpp
+QT_QRC = qt/magocoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_magocoin_locale.cpp
+QT_QRC_LOCALE = qt/magocoin_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -292,7 +292,7 @@ RES_IMAGES = \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
   qt/res/images/upArrow_small.png \
-  qt/res/images/eps_logo_horizontal.png \
+  qt/res/images/magocoin_logo_horizontal.png \
   qt/res/images/leftArrow_small.png \
   qt/res/images/rightArrow_small.png \
   qt/res/images/qtreeview_selected.png \
@@ -305,7 +305,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/eps-qt-res.rc
+BITCOIN_RC = qt/res/magocoin-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -325,68 +325,68 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_eps_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_magocoin_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# eps-qt binary #
-qt_eps_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# magocoin-qt binary #
+qt_magocoin_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_eps_qt_SOURCES = qt/eps.cpp
+qt_magocoin_qt_SOURCES = qt/magocoin.cpp
 if TARGET_DARWIN
-  qt_eps_qt_SOURCES += $(BITCOIN_MM)
+  qt_magocoin_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_eps_qt_SOURCES += $(BITCOIN_RC)
+  qt_magocoin_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_eps_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_magocoin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_eps_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_magocoin_qt_LDADD += $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_eps_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_magocoin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_eps_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_magocoin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1)
-qt_eps_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_eps_qt_LIBTOOLFLAGS = --tag CXX
+qt_magocoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_magocoin_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 .SECONDARY: $(QT_QM)
 
-qt/epsstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
+qt/magocoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/epsstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: qt/magocoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/eps_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/magocoin_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name eps_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name magocoin_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name eps $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name magocoin $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-eps_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_eps_qt_OBJECTS) qt/eps-qt$(EXEEXT) $(LIBBITCOINQT)
+magocoin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_magocoin_qt_OBJECTS) qt/magocoin-qt$(EXEEXT) $(LIBBITCOINQT)
 
-eps_qt : qt/eps-qt$(EXEEXT)
+magocoin_qt : qt/magocoin-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

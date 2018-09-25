@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -163,7 +163,7 @@ Value getrawmempool(const Array& params, bool fHelp)
             "{                           (json object)\n"
             "  \"transactionid\" : {       (json object)\n"
             "    \"size\" : n,             (numeric) transaction size in bytes\n"
-            "    \"fee\" : n,              (numeric) transaction fee in eps\n"
+            "    \"fee\" : n,              (numeric) transaction fee in magocoin\n"
             "    \"time\" : n,             (numeric) local time transaction entered pool in seconds since 1 Jan 1970 GMT\n"
             "    \"height\" : n,           (numeric) block height when transaction entered pool\n"
             "    \"startingpriority\" : n, (numeric) priority when transaction entered pool\n"
@@ -403,8 +403,8 @@ Value gettxout(const Array& params, bool fHelp)
             "     \"hex\" : \"hex\",        (string) \n"
             "     \"reqSigs\" : n,          (numeric) Number of required signatures\n"
             "     \"type\" : \"pubkeyhash\", (string) The type, eg pubkeyhash\n"
-            "     \"addresses\" : [          (array of string) array of eps addresses\n"
-            "     \"epsaddress\"   	 	(string) eps address\n"
+            "     \"addresses\" : [          (array of string) array of magocoin addresses\n"
+            "     \"magocoinaddress\"   	 	(string) magocoin address\n"
             "        ,...\n"
             "     ]\n"
             "  },\n"
@@ -560,21 +560,21 @@ Value getchaintips(const Array& params, bool fHelp)
     /* Build up a list of chain tips.  We start with the list of all
        known blocks, and successively remove blocks that appear as pprev
        of another block.  */
-    std::set<const CBlockIndex*, CompareBlocksByHeight> setTeps;
+    std::set<const CBlockIndex*, CompareBlocksByHeight> setTmagocoin;
     BOOST_FOREACH (const PAIRTYPE(const uint256, CBlockIndex*) & item, mapBlockIndex)
-        setTeps.insert(item.second);
+        setTmagocoin.insert(item.second);
     BOOST_FOREACH (const PAIRTYPE(const uint256, CBlockIndex*) & item, mapBlockIndex) {
         const CBlockIndex* pprev = item.second->pprev;
         if (pprev)
-            setTeps.erase(pprev);
+            setTmagocoin.erase(pprev);
     }
 
     // Always report the currently active tip.
-    setTeps.insert(chainActive.Tip());
+    setTmagocoin.insert(chainActive.Tip());
 
     /* Construct the output array.  */
     Array res;
-    BOOST_FOREACH (const CBlockIndex* block, setTeps) {
+    BOOST_FOREACH (const CBlockIndex* block, setTmagocoin) {
         Object obj;
         obj.push_back(Pair("height", block->nHeight));
         obj.push_back(Pair("hash", block->phashBlock->GetHex()));

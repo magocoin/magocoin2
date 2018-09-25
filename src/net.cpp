@@ -2,12 +2,12 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/eps-config.h"
+#include "config/magocoin-config.h"
 #endif
 
 #include "net.h"
@@ -562,7 +562,7 @@ void CNode::copyStats(CNodeStats& stats)
         nPingUsecWait = GetTimeMicros() - nPingUsecStart;
     }
 
-    // Raw ping time is in microseconds, but show it to user as whole seconds (EPS users should be well used to small numbers with many decimal places by now :)
+    // Raw ping time is in microseconds, but show it to user as whole seconds (magocoin users should be well used to small numbers with many decimal places by now :)
     stats.dPingTime = (((double)nPingUsecTime) / 1e6);
     stats.dPingWait = (((double)nPingUsecWait) / 1e6);
 
@@ -1019,7 +1019,7 @@ void ThreadMapPort()
             }
         }
 
-        string strDesc = "EPS " + FormatFullVersion();
+        string strDesc = "magocoin " + FormatFullVersion();
 
         try {
             while (true) {
@@ -1224,7 +1224,7 @@ void ThreadOpenConnections()
                 break;
 
             // If we didn't find an appropriate destination after trying 100 addresses fetched from addrman,
-            // stop this loop, and let the outer loop run again (which sleeps, adds seed nodes, recalculates
+            // stop this loop, and let the outer loop run again (which slemagocoin, adds seed nodes, recalculates
             // already-connected network ranges, ...) before trying new addrman addresses.
             nTries++;
             if (nTries > 100)
@@ -1491,7 +1491,7 @@ bool BindListenPort(const CService& addrBind, string& strError, bool fWhiteliste
     if (::bind(hListenSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR) {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. Eps is probably already running."), addrBind.ToString());
+            strError = strprintf(_("Unable to bind to %s on this computer. Magocoin is probably already running."), addrBind.ToString());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %s)"), addrBind.ToString(), NetworkErrorString(nErr));
         LogPrintf("%s\n", strError);

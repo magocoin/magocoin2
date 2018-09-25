@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(getlocator_test)
             BOOST_CHECK_EQUAL(locator.vHave[i].GetLow64(), tip->nHeight - i);
         }
 
-        // The further ones (excluding the last one) go back with exponential steps.
+        // The further ones (excluding the last one) go back with exponential stmagocoin.
         unsigned int dist = 2;
         for (unsigned int i = 12; i < locator.vHave.size() - 1; i++) {
             BOOST_CHECK_EQUAL(locator.vHave[i - 1].GetLow64() - locator.vHave[i].GetLow64(), dist);

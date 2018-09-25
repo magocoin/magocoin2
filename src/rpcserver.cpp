@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -220,10 +220,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop EPS server.");
+            "\nStop magocoin server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "EPS server stopping";
+    return "magocoin server stopping";
 }
 
 
@@ -300,36 +300,36 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Eps features */
-        {"eps", "masternode", &masternode, true, true, false},
-        {"eps", "listmasternodes", &listmasternodes, true, true, false},
-        {"eps", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"eps", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"eps", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"eps", "masternodedebug", &masternodedebug, true, true, false},
-        {"eps", "startmasternode", &startmasternode, true, true, false},
-        {"eps", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"eps", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"eps", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"eps", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"eps", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"eps", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"eps", "mnbudget", &mnbudget, true, true, false},
-        {"eps", "preparebudget", &preparebudget, true, true, false},
-        {"eps", "submitbudget", &submitbudget, true, true, false},
-        {"eps", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"eps", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"eps", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"eps", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"eps", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"eps", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"eps", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"eps", "checkbudgets", &checkbudgets, true, true, false},
-        {"eps", "mnsync", &mnsync, true, true, false},
-        {"eps", "spork", &spork, true, true, false},
-        {"eps", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* Magocoin features */
+        {"magocoin", "masternode", &masternode, true, true, false},
+        {"magocoin", "listmasternodes", &listmasternodes, true, true, false},
+        {"magocoin", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"magocoin", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"magocoin", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"magocoin", "masternodedebug", &masternodedebug, true, true, false},
+        {"magocoin", "startmasternode", &startmasternode, true, true, false},
+        {"magocoin", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"magocoin", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"magocoin", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"magocoin", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"magocoin", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"magocoin", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"magocoin", "mnbudget", &mnbudget, true, true, false},
+        {"magocoin", "preparebudget", &preparebudget, true, true, false},
+        {"magocoin", "submitbudget", &submitbudget, true, true, false},
+        {"magocoin", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"magocoin", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"magocoin", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"magocoin", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"magocoin", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"magocoin", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"magocoin", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"magocoin", "checkbudgets", &checkbudgets, true, true, false},
+        {"magocoin", "mnsync", &mnsync, true, true, false},
+        {"magocoin", "spork", &spork, true, true, false},
+        {"magocoin", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"eps", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"magocoin", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -594,16 +594,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use epsd, or the -server option to eps-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use magocoind, or the -server option to magocoin-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=epsrpc\n"
+                                               "rpcuser=magocoinrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"EPS Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"magocoin Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1054,14 +1054,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> eps-cli " + methodname + " " + args + "\n";
+    return "> magocoin-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:48481/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:22123/\n";
 }
 
 const CRPCTable tableRPC;

@@ -92,7 +92,7 @@ namespace json_spirit
     }
 
     // this class generates the JSON text,
-    // it keeps track of the indentation level etc.
+    // it kemagocoin track of the indentation level etc.
     //
     template< class Value_type, class Ostream_type >
     class Generator

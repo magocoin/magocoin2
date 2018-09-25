@@ -227,7 +227,7 @@ public:
 
 //
 // Masternode Payments Class
-// Keeps track of who should get paid for which blocks
+// Kemagocoin track of who should get paid for which blocks
 //
 
 class CMasternodePayments

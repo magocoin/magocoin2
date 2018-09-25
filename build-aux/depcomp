@@ -121,9 +121,9 @@ if test -z "$depmode" || test -z "$source" || test -z "$object"; then
   exit 1
 fi
 
-# Dependencies for sub/bar.o or sub/bar.obj go into sub/.deps/bar.Po.
+# Dependencies for sub/bar.o or sub/bar.obj go into sub/.dmagocoin/bar.Po.
 depfile=${depfile-`echo "$object" |
-  sed 's|[^\\/]*$|'${DEPDIR-.deps}'/&|;s|\.\([^.]*\)$|.P\1|;s|Pobj$|Po|'`}
+  sed 's|[^\\/]*$|'${DEPDIR-.dmagocoin}'/&|;s|\.\([^.]*\)$|.P\1|;s|Pobj$|Po|'`}
 tmpdepfile=${tmpdepfile-`echo "$depfile" | sed 's/\.\([^.]*\)$/.T\1/'`}
 
 rm -f "$tmpdepfile"
@@ -362,7 +362,7 @@ tcc)
 ## compilers, so we must ensure this comes after the gcc and icc options.
 pgcc)
   # Portland's C compiler understands '-MD'.
-  # Will always output deps to 'file.d' where file is the root name of the
+  # Will always output dmagocoin to 'file.d' where file is the root name of the
   # source file under compilation, even if file resides in a subdirectory.
   # The object file name does not affect the name of the '.d' file.
   # pgcc 10.2 will output

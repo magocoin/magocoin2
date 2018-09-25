@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,7 +42,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "EPS cannot be compiled without assertions."
+#error "magocoin cannot be compiled without assertions."
 #endif
 
 /**
@@ -1713,7 +1713,7 @@ void CheckForkWarningConditionsOnNewFork(CBlockIndex* pindexNewForkTip)
 // Requires cs_main.
 void Misbehaving(NodeId pnode, int howmuch)
 {
-    return; // This keeps banning nodes, for no logical reason.
+    return; // This kemagocoin banning nodes, for no logical reason.
     if (howmuch == 0)
         return;
 
@@ -2007,7 +2007,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("eps-scriptch");
+    RenameThread("magocoin-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -2670,7 +2670,7 @@ static bool ActivateBestChainStep(CValidationState& state, CBlockIndex* pindexMo
 }
 
 /**
- * Make the best chain active, in multiple steps. The result is either failure
+ * Make the best chain active, in multiple stmagocoin. The result is either failure
  * or an activated best chain. pblock is either NULL or a pointer to a block
  * that is already loaded (to avoid loading it again from disk).
  */
@@ -3102,7 +3102,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // EPS
+        // magocoin
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -3352,7 +3352,7 @@ int static inline GetSkipHeight(int height)
         return 0;
 
     // Determine which height to jump back to. Any number strictly lower than height is acceptable,
-    // but the following expression seems to perform well in simulations (max 110 steps to go back
+    // but the following expression seems to perform well in simulations (max 110 stmagocoin to go back
     // up to 2**18 blocks).
     return (height & 1) ? InvertLowestOne(InvertLowestOne(height - 1)) + 1 : InvertLowestOne(height);
 }

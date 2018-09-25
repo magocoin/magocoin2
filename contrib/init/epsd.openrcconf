@@ -1,25 +1,25 @@
-# /etc/conf.d/epsd: config file for /etc/init.d/epsd
+# /etc/conf.d/magocoind: config file for /etc/init.d/magocoind
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/eps/eps.conf"
+#BITCOIND_CONFIGFILE="/etc/magocoin/magocoin.conf"
 
 # What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/epsd"
+#BITCOIND_PIDDIR="/var/run/magocoind"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/epsd.pid"
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/magocoind.pid"
 
-# Where to write epsd data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/epsd"
+# Where to write magocoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/magocoind"
 
-# User and group to own epsd process
-#BITCOIND_USER="eps"
-#BITCOIND_GROUP="eps"
+# User and group to own magocoind process
+#BITCOIND_USER="magocoin"
+#BITCOIND_GROUP="magocoin"
 
-# Path to epsd executable
-#BITCOIND_BIN="/usr/bin/epsd"
+# Path to magocoind executable
+#BITCOIND_BIN="/usr/bin/magocoind"
 
-# Nice value to run epsd under
+# Nice value to run magocoind under
 #BITCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)

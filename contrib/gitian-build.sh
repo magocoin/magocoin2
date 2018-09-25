@@ -17,7 +17,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/eclipseadnetwork/eps
+url=https://github.com/magocoinadnetwork/magocoin
 proc=2
 mem=2000
 lxc=true
@@ -31,7 +31,7 @@ commitFiles=true
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the eps, gitian-builder, gitian.sigs, and eps-detached-sigs.
+Run this script from the directory containing the magocoin, gitian-builder, gitian.sigs, and magocoin-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/eclipseadnetwork/eps
+-u|--url	Specify the URL of the repository. Default is https://github.com/magocoinadnetwork/magocoin
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -232,8 +232,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/epscoin/gitian.sigs.git
-    git clone https://github.com/eclipseadnetwork/eps-detached-sigs.git
+    git clone https://github.com/magocoincoin/gitian.sigs.git
+    git clone https://github.com/magocoinadnetwork/magocoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -247,7 +247,7 @@ then
 fi
 
 # Set up build
-pushd ./eps
+pushd ./magocoin
 git fetch
 git checkout ${COMMIT}
 popd
@@ -256,7 +256,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./eps-binaries/${VERSION}
+	mkdir -p ./magocoin-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -266,7 +266,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../eps/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../magocoin/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit eps=${COMMIT} --url eps=${url} ../eps/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../eps/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/eps-*.tar.gz build/out/src/eps-*.tar.gz ../eps-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit magocoin=${COMMIT} --url magocoin=${url} ../magocoin/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../magocoin/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/magocoin-*.tar.gz build/out/src/magocoin-*.tar.gz ../magocoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit eps=${COMMIT} --url eps=${url} ../eps/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../eps/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/eps-*-win-unsigned.tar.gz inputs/eps-win-unsigned.tar.gz
-	    mv build/out/eps-*.zip build/out/eps-*.exe ../eps-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit magocoin=${COMMIT} --url magocoin=${url} ../magocoin/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../magocoin/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/magocoin-*-win-unsigned.tar.gz inputs/magocoin-win-unsigned.tar.gz
+	    mv build/out/magocoin-*.zip build/out/magocoin-*.exe ../magocoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -295,10 +295,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit eps=${COMMIT} --url eps=${url} ../eps/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../eps/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/eps-*-osx-unsigned.tar.gz inputs/eps-osx-unsigned.tar.gz
-	    mv build/out/eps-*.tar.gz build/out/eps-*.dmg ../eps-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit magocoin=${COMMIT} --url magocoin=${url} ../magocoin/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../magocoin/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/magocoin-*-osx-unsigned.tar.gz inputs/magocoin-osx-unsigned.tar.gz
+	    mv build/out/magocoin-*.tar.gz build/out/magocoin-*.dmg ../magocoin-binaries/${VERSION}
 	fi
 	popd
 
@@ -325,27 +325,27 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../eps/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../magocoin/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../eps/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../magocoin/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../eps/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../magocoin/contrib/gitian-descriptors/gitian-osx.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../eps/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../magocoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../eps/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../magocoin/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd
 fi
 
@@ -360,10 +360,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../eps/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../eps/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/eps-*win64-setup.exe ../eps-binaries/${VERSION}
-	    mv build/out/eps-*win32-setup.exe ../eps-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../magocoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../magocoin/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/magocoin-*win64-setup.exe ../magocoin-binaries/${VERSION}
+	    mv build/out/magocoin-*win32-setup.exe ../magocoin-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -371,9 +371,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../eps/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../eps/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/eps-osx-signed.dmg ../eps-binaries/${VERSION}/eps-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../magocoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../magocoin/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/magocoin-osx-signed.dmg ../magocoin-binaries/${VERSION}/magocoin-${VERSION}-osx.dmg
 	fi
 	popd
 

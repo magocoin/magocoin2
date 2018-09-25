@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,13 +82,13 @@ Value getnewaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewaddress ( \"account\" )\n"
-            "\nReturns a new EPS address for receiving payments.\n"
+            "\nReturns a new magocoin address for receiving payments.\n"
             "If 'account' is specified (recommended), it is added to the address book \n"
             "so payments received with the address will be credited to 'account'.\n"
             "\nArguments:\n"
             "1. \"account\"        (string, optional) The account name for the address to be linked to. if not provided, the default account \"\" is used. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created if there is no account by the given name.\n"
             "\nResult:\n"
-            "\"epsaddress\"    (string) The new eps address\n"
+            "\"magocoinaddress\"    (string) The new magocoin address\n"
             "\nExamples:\n" +
             HelpExampleCli("getnewaddress", "") + HelpExampleCli("getnewaddress", "\"\"") + HelpExampleCli("getnewaddress", "\"myaccount\"") + HelpExampleRpc("getnewaddress", "\"myaccount\""));
 
@@ -151,11 +151,11 @@ Value getaccountaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccountaddress \"account\"\n"
-            "\nReturns the current EPS address for receiving payments to this account.\n"
+            "\nReturns the current magocoin address for receiving payments to this account.\n"
             "\nArguments:\n"
             "1. \"account\"       (string, required) The account name for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
             "\nResult:\n"
-            "\"epsaddress\"   (string) The account eps address\n"
+            "\"magocoinaddress\"   (string) The account magocoin address\n"
             "\nExamples:\n" +
             HelpExampleCli("getaccountaddress", "") + HelpExampleCli("getaccountaddress", "\"\"") + HelpExampleCli("getaccountaddress", "\"myaccount\"") + HelpExampleRpc("getaccountaddress", "\"myaccount\""));
 
@@ -175,7 +175,7 @@ Value getrawchangeaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getrawchangeaddress\n"
-            "\nReturns a new EPS address, for receiving change.\n"
+            "\nReturns a new magocoin address, for receiving change.\n"
             "This is for use with raw transactions, NOT normal use.\n"
             "\nResult:\n"
             "\"address\"    (string) The address\n"
@@ -202,17 +202,17 @@ Value setaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "setaccount \"epsaddress\" \"account\"\n"
+            "setaccount \"magocoinaddress\" \"account\"\n"
             "\nSets the account associated with the given address.\n"
             "\nArguments:\n"
-            "1. \"epsaddress\"  (string, required) The eps address to be associated with an account.\n"
+            "1. \"magocoinaddress\"  (string, required) The magocoin address to be associated with an account.\n"
             "2. \"account\"         (string, required) The account to assign the address to.\n"
             "\nExamples:\n" +
             HelpExampleCli("setaccount", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\" \"tabby\"") + HelpExampleRpc("setaccount", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\", \"tabby\""));
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid EPS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid magocoin address");
 
 
     string strAccount;
@@ -239,10 +239,10 @@ Value getaccount(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "getaccount \"epsaddress\"\n"
+            "getaccount \"magocoinaddress\"\n"
             "\nReturns the account associated with the given address.\n"
             "\nArguments:\n"
-            "1. \"epsaddress\"  (string, required) The eps address for account lookup.\n"
+            "1. \"magocoinaddress\"  (string, required) The magocoin address for account lookup.\n"
             "\nResult:\n"
             "\"accountname\"        (string) the account address\n"
             "\nExamples:\n" +
@@ -250,7 +250,7 @@ Value getaccount(const Array& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid EPS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid magocoin address");
 
     string strAccount;
     map<CTxDestination, CAddressBookData>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
@@ -270,7 +270,7 @@ Value getaddressesbyaccount(const Array& params, bool fHelp)
             "1. \"account\"  (string, required) The account name.\n"
             "\nResult:\n"
             "[                     (json array of string)\n"
-            "  \"epsaddress\"  (string) a eps address associated with the given account\n"
+            "  \"magocoinaddress\"  (string) a magocoin address associated with the given account\n"
             "  ,...\n"
             "]\n"
             "\nExamples:\n" +
@@ -293,11 +293,11 @@ Value sendtoaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddress \"epsaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddress \"magocoinaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() +
             "\nArguments:\n"
-            "1. \"epsaddress\"  (string, required) The eps address to send to.\n"
+            "1. \"magocoinaddress\"  (string, required) The magocoin address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in btc to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -311,7 +311,7 @@ Value sendtoaddress(const Array& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid EPS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid magocoin address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -334,11 +334,11 @@ Value sendtoaddressix(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "sendtoaddressix \"epsaddress\" amount ( \"comment\" \"comment-to\" )\n"
+            "sendtoaddressix \"magocoinaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n" +
             HelpRequiringPassphrase() +
             "\nArguments:\n"
-            "1. \"epsaddress\"  (string, required) The eps address to send to.\n"
+            "1. \"magocoinaddress\"  (string, required) The magocoin address to send to.\n"
             "2. \"amount\"      (numeric, required) The amount in btc to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                             This is not part of the transaction, just kept in your wallet.\n"
@@ -352,7 +352,7 @@ Value sendtoaddressix(const Array& params, bool fHelp)
 
     CBitcoinAddress address(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid EPS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid magocoin address");
 
     // Amount
     CAmount nAmount = AmountFromValue(params[1]);
@@ -382,7 +382,7 @@ Value listaddressgroupings(const Array& params, bool fHelp)
             "[\n"
             "  [\n"
             "    [\n"
-            "      \"epsaddress\",     (string) The eps address\n"
+            "      \"magocoinaddress\",     (string) The magocoin address\n"
             "      amount,                 (numeric) The amount in btc\n"
             "      \"account\"             (string, optional) The account\n"
             "    ]\n"
@@ -417,11 +417,11 @@ Value signmessage(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw runtime_error(
-            "signmessage \"epsaddress\" \"message\"\n"
+            "signmessage \"magocoinaddress\" \"message\"\n"
             "\nSign a message with the private key of an address" +
             HelpRequiringPassphrase() + "\n"
                                         "\nArguments:\n"
-                                        "1. \"epsaddress\"  (string, required) The eps address to use for the private key.\n"
+                                        "1. \"magocoinaddress\"  (string, required) The magocoin address to use for the private key.\n"
                                         "2. \"message\"         (string, required) The message to create a signature of.\n"
                                         "\nResult:\n"
                                         "\"signature\"          (string) The signature of the message encoded in base 64\n"
@@ -464,10 +464,10 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
-            "getreceivedbyaddress \"epsaddress\" ( minconf )\n"
-            "\nReturns the total amount received by the given epsaddress in transactions with at least minconf confirmations.\n"
+            "getreceivedbyaddress \"magocoinaddress\" ( minconf )\n"
+            "\nReturns the total amount received by the given magocoinaddress in transactions with at least minconf confirmations.\n"
             "\nArguments:\n"
-            "1. \"epsaddress\"  (string, required) The eps address for transactions.\n"
+            "1. \"magocoinaddress\"  (string, required) The magocoin address for transactions.\n"
             "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
             "\nResult:\n"
             "amount   (numeric) The total amount in btc received at this address.\n"
@@ -478,10 +478,10 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
             "\nThe amount with at least 6 confirmation, very safe\n" + HelpExampleCli("getreceivedbyaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\" 6") +
             "\nAs a json rpc call\n" + HelpExampleRpc("getreceivedbyaddress", "\"XwnLY9Tf7Zsef8gMGL2fhWA9ZmMjt4KPwg\", 6"));
 
-    // eps address
+    // magocoin address
     CBitcoinAddress address = CBitcoinAddress(params[0].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid EPS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid magocoin address");
     CScript scriptPubKey = GetScriptForDestination(address.Get());
     if (!IsMine(*pwalletMain, scriptPubKey))
         return (double)0.0;
@@ -728,13 +728,13 @@ Value sendfrom(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
-            "sendfrom \"fromaccount\" \"toepsaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
-            "\nSent an amount from an account to a eps address.\n"
+            "sendfrom \"fromaccount\" \"tomagocoinaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "\nSent an amount from an account to a magocoin address.\n"
             "The amount is a real and is rounded to the nearest 0.00000001." +
             HelpRequiringPassphrase() + "\n"
                                         "\nArguments:\n"
                                         "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
-                                        "2. \"toepsaddress\"  (string, required) The eps address to send funds to.\n"
+                                        "2. \"tomagocoinaddress\"  (string, required) The magocoin address to send funds to.\n"
                                         "3. amount                (numeric, required) The amount in btc. (transaction fee is added on top).\n"
                                         "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
                                         "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
@@ -753,7 +753,7 @@ Value sendfrom(const Array& params, bool fHelp)
     string strAccount = AccountFromValue(params[0]);
     CBitcoinAddress address(params[1].get_str());
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid EPS address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid magocoin address");
     CAmount nAmount = AmountFromValue(params[2]);
     int nMinDepth = 1;
     if (params.size() > 3)
@@ -790,7 +790,7 @@ Value sendmany(const Array& params, bool fHelp)
                                         "1. \"fromaccount\"         (string, required) The account to send the funds from, can be \"\" for the default account\n"
                                         "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
                                         "    {\n"
-                                        "      \"address\":amount   (numeric) The eps address is the key, the numeric amount in btc is the value\n"
+                                        "      \"address\":amount   (numeric) The magocoin address is the key, the numeric amount in btc is the value\n"
                                         "      ,...\n"
                                         "    }\n"
                                         "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
@@ -822,7 +822,7 @@ Value sendmany(const Array& params, bool fHelp)
     BOOST_FOREACH (const Pair& s, sendTo) {
         CBitcoinAddress address(s.name_);
         if (!address.IsValid())
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid EPS address: ") + s.name_);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid magocoin address: ") + s.name_);
 
         if (setAddress.count(address))
             throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ") + s.name_);
@@ -863,20 +863,20 @@ Value addmultisigaddress(const Array& params, bool fHelp)
     if (fHelp || params.size() < 2 || params.size() > 3) {
         string msg = "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
                      "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
-                     "Each key is a EPS address or hex-encoded public key.\n"
+                     "Each key is a magocoin address or hex-encoded public key.\n"
                      "If 'account' is specified, assign address to that account.\n"
 
                      "\nArguments:\n"
                      "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
-                     "2. \"keysobject\"   (string, required) A json array of eps addresses or hex-encoded public keys\n"
+                     "2. \"keysobject\"   (string, required) A json array of magocoin addresses or hex-encoded public keys\n"
                      "     [\n"
-                     "       \"address\"  (string) eps address or hex-encoded public key\n"
+                     "       \"address\"  (string) magocoin address or hex-encoded public key\n"
                      "       ...,\n"
                      "     ]\n"
                      "3. \"account\"      (string, optional) An account to assign the addresses to.\n"
 
                      "\nResult:\n"
-                     "\"epsaddress\"  (string) A eps address associated with the keys.\n"
+                     "\"magocoinaddress\"  (string) A magocoin address associated with the keys.\n"
 
                      "\nExamples:\n"
                      "\nAdd a multisig address from 2 addresses\n" +
@@ -1191,7 +1191,7 @@ Value listtransactions(const Array& params, bool fHelp)
             "  {\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. \n"
             "                                                It will be \"\" for the default account.\n"
-            "    \"address\":\"epsaddress\",    (string) The eps address of the transaction. Not present for \n"
+            "    \"address\":\"magocoinaddress\",    (string) The magocoin address of the transaction. Not present for \n"
             "                                                move transactions (category = move).\n"
             "    \"category\":\"send|receive|move\", (string) The transaction category. 'move' is a local (off blockchain)\n"
             "                                                transaction between accounts, and not associated with an address,\n"
@@ -1366,7 +1366,7 @@ Value listsinceblock(const Array& params, bool fHelp)
             "{\n"
             "  \"transactions\": [\n"
             "    \"account\":\"accountname\",       (string) The account name associated with the transaction. Will be \"\" for the default account.\n"
-            "    \"address\":\"epsaddress\",    (string) The eps address of the transaction. Not present for move transactions (category = move).\n"
+            "    \"address\":\"magocoinaddress\",    (string) The magocoin address of the transaction. Not present for move transactions (category = move).\n"
             "    \"category\":\"send|receive\",     (string) The transaction category. 'send' has negative amounts, 'receive' has positive amounts.\n"
             "    \"amount\": x.xxx,          (numeric) The amount in btc. This is negative for the 'send' category, and for the 'move' category for moves \n"
             "                                          outbound. It is positive for the 'receive' category, and for the 'move' category for inbound funds.\n"
@@ -1456,7 +1456,7 @@ Value gettransaction(const Array& params, bool fHelp)
             "  \"details\" : [\n"
             "    {\n"
             "      \"account\" : \"accountname\",  (string) The account name involved in the transaction, can be \"\" for the default account.\n"
-            "      \"address\" : \"epsaddress\",   (string) The eps address involved in the transaction\n"
+            "      \"address\" : \"magocoinaddress\",   (string) The magocoin address involved in the transaction\n"
             "      \"category\" : \"send|receive\",    (string) The category, either 'send' or 'receive'\n"
             "      \"amount\" : x.xxx                  (numeric) The amount in btc\n"
             "      \"vout\" : n,                       (numeric) the vout value\n"
@@ -1567,7 +1567,7 @@ Value walletpassphrase(const Array& params, bool fHelp)
         throw runtime_error(
             "walletpassphrase \"passphrase\" timeout ( anonymizeonly )\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
-            "This is needed prior to performing transactions related to private keys such as sending Epss\n"
+            "This is needed prior to performing transactions related to private keys such as sending Magocoins\n"
             "\nArguments:\n"
             "1. \"passphrase\"     (string, required) The wallet passphrase\n"
             "2. timeout            (numeric, required) The time to keep the decryption key in seconds.\n"
@@ -1704,8 +1704,8 @@ Value encryptwallet(const Array& params, bool fHelp)
             "\nExamples:\n"
             "\nEncrypt you wallet\n" +
             HelpExampleCli("encryptwallet", "\"my pass phrase\"") +
-            "\nNow set the passphrase to use the wallet, such as for signing or sending Epss\n" + HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
-            "\nNow we can so something like sign\n" + HelpExampleCli("signmessage", "\"epsaddress\" \"test message\"") +
+            "\nNow set the passphrase to use the wallet, such as for signing or sending Magocoins\n" + HelpExampleCli("walletpassphrase", "\"my pass phrase\"") +
+            "\nNow we can so something like sign\n" + HelpExampleCli("signmessage", "\"magocoinaddress\" \"test message\"") +
             "\nNow lock the wallet again by removing the passphrase\n" + HelpExampleCli("walletlock", "") +
             "\nAs a json rpc call\n" + HelpExampleRpc("encryptwallet", "\"my pass phrase\""));
 
@@ -1732,7 +1732,7 @@ Value encryptwallet(const Array& params, bool fHelp)
     // slack space in .dat files; that is bad if the old data is
     // unencrypted private keys. So:
     StartShutdown();
-    return "wallet encrypted; eps server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
+    return "wallet encrypted; magocoin server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
 }
 
 Value lockunspent(const Array& params, bool fHelp)
@@ -1742,7 +1742,7 @@ Value lockunspent(const Array& params, bool fHelp)
             "lockunspent unlock [{\"txid\":\"txid\",\"vout\":n},...]\n"
             "\nUpdates list of temporarily unspendable outputs.\n"
             "Temporarily lock (unlock=false) or unlock (unlock=true) specified transaction outputs.\n"
-            "A locked transaction output will not be chosen by automatic coin selection, when spending Epss.\n"
+            "A locked transaction output will not be chosen by automatic coin selection, when spending Magocoins.\n"
             "Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list\n"
             "is always cleared (by virtue of process exit) when a node stops or fails.\n"
             "Also see the listunspent call\n"
@@ -1854,7 +1854,7 @@ Value settxfee(const Array& params, bool fHelp)
             "settxfee amount\n"
             "\nSet the transaction fee per kB.\n"
             "\nArguments:\n"
-            "1. amount         (numeric, required) The transaction fee in Eps/kB rounded to the nearest 0.00000001\n"
+            "1. amount         (numeric, required) The transaction fee in Magocoin/kB rounded to the nearest 0.00000001\n"
             "\nResult\n"
             "true|false        (boolean) Returns true if successful\n"
             "\nExamples:\n" +
@@ -1878,7 +1878,7 @@ Value getwalletinfo(const Array& params, bool fHelp)
             "\nResult:\n"
             "{\n"
             "  \"walletversion\": xxxxx,     (numeric) the wallet version\n"
-            "  \"balance\": xxxxxxx,         (numeric) the total Eps balance of the wallet\n"
+            "  \"balance\": xxxxxxx,         (numeric) the total Magocoin balance of the wallet\n"
             "  \"txcount\": xxxxxxx,         (numeric) the total number of transactions in the wallet\n"
             "  \"keypoololdest\": xxxxxx,    (numeric) the timestamp (seconds since GMT epoch) of the oldest pre-generated key in the key pool\n"
             "  \"keypoolsize\": xxxx,        (numeric) how many new keys are pre-generated\n"
@@ -2007,7 +2007,7 @@ Value autocombinerewards(const Array& params, bool fHelp)
     if (fHelp || params.size() < 1 || (fEnable && params.size() != 2) || params.size() > 2)
         throw runtime_error(
             "autocombinerewards true|false ( threshold )\n"
-            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same EPS address\n"
+            "\nWallet will automatically monitor for any coins with value below the threshold amount, and combine them if they reside with the same magocoin address\n"
             "When autocombinerewards runs it will create a transaction, and therefore will be subject to transaction fees.\n"
 
             "\nArguments:\n"
@@ -2215,7 +2215,7 @@ Value multisend(const Array& params, bool fHelp)
             "The MultiSend transaction is sent when the staked coins mature (100 confirmations)\n"
             "****************************************************************\n"
             "TO CREATE OR ADD TO THE MULTISEND VECTOR:\n"
-            "multisend <EPS Address> <percent>\n"
+            "multisend <magocoin Address> <percent>\n"
             "This will add a new address to the MultiSend vector\n"
             "Percent is a whole number 1 to 100.\n"
             "****************************************************************\n"
@@ -2234,7 +2234,7 @@ Value multisend(const Array& params, bool fHelp)
     string strAddress = params[0].get_str();
     CBitcoinAddress address(strAddress);
     if (!address.IsValid())
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Eps address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Magocoin address");
     if (boost::lexical_cast<int>(params[1].get_str()) < 0)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, expected valid percentage");
     if (pwalletMain->IsLocked())

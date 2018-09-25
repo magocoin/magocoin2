@@ -6,17 +6,17 @@ define(_CLIENT_VERSION_REVISION, 0)
 define(_CLIENT_VERSION_BUILD, 1)
 define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2018)
-AC_INIT([Eps Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[eclipsead.network],[eps])
+AC_INIT([Magocoin Core],[_CLIENT_VERSION_MAJOR._CLIENT_VERSION_MINOR._CLIENT_VERSION_REVISION],[magocoinad.network],[magocoin])
 AC_CONFIG_SRCDIR([src/main.cpp])
-AC_CONFIG_HEADERS([src/config/eps-config.h])
+AC_CONFIG_HEADERS([src/config/magocoin-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef Eps_CONFIG_H])
-AH_TOP([#define Eps_CONFIG_H])
-AH_BOTTOM([#endif //Eps_CONFIG_H])
+AH_TOP([#ifndef Magocoin_CONFIG_H])
+AH_TOP([#define Magocoin_CONFIG_H])
+AH_BOTTOM([#endif //Magocoin_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -196,7 +196,7 @@ CPPFLAGS="$CPPFLAGS -DBOOST_SPIRIT_THREADSAFE -DHAVE_BUILD_INFO -D__STDC_FORMAT_
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build eps-cli eps-tx (default=yes)])],
+  [build magocoin-cli magocoin-tx (default=yes)])],
   [build_bitcoin_utils=$withval],
   [build_bitcoin_utils=yes])
 
@@ -208,7 +208,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build epsd daemon (default=yes)])],
+  [build magocoind daemon (default=yes)])],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
@@ -270,11 +270,11 @@ case $host in
 
      dnl libtool insists upon adding -nostdlib and a list of objects/libs to link against.
      dnl That breaks our ability to build dll's with static libgcc/libstdc++/libssp. Override
-     dnl its command here, with the predeps/postdeps removed, and -static inserted. Postdeps are
+     dnl its command here, with the predmagocoin/postdmagocoin removed, and -static inserted. Postdmagocoin are
      dnl also overridden to prevent their insertion later.
      dnl This should only affect dll's.
      archive_cmds_CXX="\$CC -shared \$libobjs \$deplibs \$compiler_flags -static -o \$output_objdir/\$soname \${wl}--enable-auto-image-base -Xlinker --out-implib -Xlinker \$lib"
-     postdeps_CXX=
+     postdmagocoin_CXX=
 
      ;;
   *darwin*)
@@ -390,7 +390,7 @@ AC_C_BIGENDIAN([AC_MSG_ERROR("Big Endian not supported")])
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to eps-config.h, but
+# The following macro will add the necessary defines to magocoin-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -783,11 +783,11 @@ LIBS="$LIBS_TEMP"
 
 BITCOIN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build epsd])
+AC_MSG_CHECKING([whether to build magocoind])
 AM_CONDITIONAL([BUILD_BITCOIND], [test x$build_bitcoind = xyes])
 AC_MSG_RESULT($build_bitcoind)
 
-AC_MSG_CHECKING([whether to build utils (eps-cli eps-tx)])
+AC_MSG_CHECKING([whether to build utils (magocoin-cli magocoin-tx)])
 AM_CONDITIONAL([BUILD_BITCOIN_UTILS], [test x$build_bitcoin_utils = xyes])
 AC_MSG_RESULT($build_bitcoin_utils)
 
@@ -887,7 +887,7 @@ if test x$bitcoin_enable_qt != xno; then
     AC_MSG_WARN("xgettext is required to update qt translations")
   fi
 
-  AC_MSG_CHECKING([whether to build test_eps-qt])
+  AC_MSG_CHECKING([whether to build test_magocoin-qt])
   if test x$use_tests$bitcoin_enable_qt_test = xyesyes; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="test"
@@ -898,7 +898,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
 
-AC_MSG_CHECKING([whether to build test_eps])
+AC_MSG_CHECKING([whether to build test_magocoin])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="test"

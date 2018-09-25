@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -31,7 +31,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// EPSMiner
+// magocoinMiner
 //
 
 //
@@ -39,7 +39,7 @@ using namespace std;
 // transactions in the memory pool. When we select transactions from the
 // pool, we select by highest priority or fee rate, so we might consider
 // transactions that depend on transactions that aren't yet in the block.
-// The COrphan class keeps track of these 'temporary orphans' while
+// The COrphan class kemagocoin track of these 'temporary orphans' while
 // CreateBlock is figuring out which transactions to include.
 //
 class COrphan
@@ -420,7 +420,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
-            return error("EPSMiner : generated block is stale");
+            return error("magocoinMiner : generated block is stale");
     }
 
     // Remove key from key pool
@@ -435,7 +435,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     // Process this block the same as if we had received it from another node
     CValidationState state;
     if (!ProcessNewBlock(state, NULL, pblock))
-        return error("EPSMiner : ProcessNewBlock, block not accepted");
+        return error("magocoinMiner : ProcessNewBlock, block not accepted");
 
     return true;
 }
@@ -446,9 +446,9 @@ bool fGenerateBitcoins = false;
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("EPSMiner started\n");
+    LogPrintf("magocoinMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread("eps-miner");
+    RenameThread("magocoin-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);
@@ -520,7 +520,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             continue;
         }
 
-        LogPrintf("Running EPSMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running magocoinMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //

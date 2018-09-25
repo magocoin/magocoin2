@@ -1,6 +1,6 @@
-usr/local/bin/eps-qt usr/bin
+usr/local/bin/magocoin-qt usr/bin
 share/pixmaps/bitcoin32.xpm usr/share/pixmaps
 share/pixmaps/bitcoin16.xpm usr/share/pixmaps
 share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/eps-qt.desktop usr/share/applications
-debian/eps-qt.protocol usr/share/kde4/services/
+debian/magocoin-qt.desktop usr/share/applications
+debian/magocoin-qt.protocol usr/share/kde4/services/

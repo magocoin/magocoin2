@@ -78,7 +78,7 @@ HEADERS += src/activemasternode.h \
            src/crypter.h \
            src/obfuscation-relay.h \
            src/obfuscation.h \
-           src/eps-config.h \
+           src/magocoin-config.h \
            src/db.h \
            src/eccryptoverify.h \
            src/ecwrapper.h \
@@ -131,7 +131,7 @@ HEADERS += src/activemasternode.h \
            src/wallet_ismine.h \
            src/walletdb.h \
            src/compat/sanity.h \
-           src/config/eps-config.h \
+           src/config/magocoin-config.h \
            src/crypto/common.h \
            src/crypto/hmac_sha256.h \
            src/crypto/hmac_sha512.h \
@@ -333,7 +333,7 @@ HEADERS += src/activemasternode.h \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.h \
            src/crypto/aes_helper.c \
            src/qt/bitcoinamountfield.moc \
-           src/qt/eps.moc \
+           src/qt/magocoin.moc \
            src/qt/intro.moc \
            src/qt/overviewpage.moc \
            src/qt/rpcconsole.moc \
@@ -374,9 +374,9 @@ SOURCES += src/activemasternode.cpp \
            src/crypter.cpp \
            src/obfuscation-relay.cpp \
            src/obfuscation.cpp \
-           src/eps-cli.cpp \
-           src/eps-tx.cpp \
-           src/eps.cpp \
+           src/magocoin-cli.cpp \
+           src/magocoin-tx.cpp \
+           src/magocoin.cpp \
            src/db.cpp \
            src/eccryptoverify.cpp \
            src/ecwrapper.cpp \
@@ -471,8 +471,8 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
            src/qt/obfuscationconfig.cpp \
-           src/qt/eps.cpp \
-           src/qt/epsstrings.cpp \
+           src/qt/magocoin.cpp \
+           src/qt/magocoinstrings.cpp \
            src/qt/editaddressdialog.cpp \
            src/qt/guiutil.cpp \
            src/qt/intro.cpp \
@@ -550,7 +550,7 @@ SOURCES += src/activemasternode.cpp \
            src/test/sighash_tests.cpp \
            src/test/sigopcount_tests.cpp \
            src/test/skiplist_tests.cpp \
-           src/test/test_eps.cpp \
+           src/test/test_magocoin.cpp \
            src/test/timedata_tests.cpp \
            src/test/transaction_tests.cpp \
            src/test/uint256_tests.cpp \
@@ -641,21 +641,21 @@ SOURCES += src/activemasternode.cpp \
            src/leveldb/helpers/memenv/memenv.cc \
            src/leveldb/helpers/memenv/memenv_test.cc \
            src/secp256k1/src/java/org_bitcoin_NativeSecp256k1.c
-RESOURCES += src/qt/eps.qrc src/qt/eps_locale.qrc
+RESOURCES += src/qt/magocoin.qrc src/qt/magocoin_locale.qrc
 
-TRANSLATIONS += src/qt/locale/eps_bg.ts \
-                src/qt/locale/eps_de.ts \
-                src/qt/locale/eps_en.ts \
-                src/qt/locale/eps_es.ts \
-                src/qt/locale/eps_fi.ts \
-                src/qt/locale/eps_fr.ts \
-                src/qt/locale/eps_it.ts \
-                src/qt/locale/eps_ja.ts \
-                src/qt/locale/eps_pl.ts \
-                src/qt/locale/eps_pt.ts \
-                src/qt/locale/eps_ru.ts \
-                src/qt/locale/eps_sk.ts \
-                src/qt/locale/eps_sv.ts \
-                src/qt/locale/eps_vi.ts \
-                src/qt/locale/eps_zh_CN.ts \
-                src/qt/locale/eps_zh_TW.ts
+TRANSLATIONS += src/qt/locale/magocoin_bg.ts \
+                src/qt/locale/magocoin_de.ts \
+                src/qt/locale/magocoin_en.ts \
+                src/qt/locale/magocoin_es.ts \
+                src/qt/locale/magocoin_fi.ts \
+                src/qt/locale/magocoin_fr.ts \
+                src/qt/locale/magocoin_it.ts \
+                src/qt/locale/magocoin_ja.ts \
+                src/qt/locale/magocoin_pl.ts \
+                src/qt/locale/magocoin_pt.ts \
+                src/qt/locale/magocoin_ru.ts \
+                src/qt/locale/magocoin_sk.ts \
+                src/qt/locale/magocoin_sv.ts \
+                src/qt/locale/magocoin_vi.ts \
+                src/qt/locale/magocoin_zh_CN.ts \
+                src/qt/locale/magocoin_zh_TW.ts

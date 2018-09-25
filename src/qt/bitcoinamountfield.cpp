@@ -23,7 +23,7 @@ class AmountSpinBox : public QAbstractSpinBox
 
 public:
     explicit AmountSpinBox(QWidget* parent) : QAbstractSpinBox(parent),
-                                              currentUnit(BitcoinUnits::Eps),
+                                              currentUnit(BitcoinUnits::Magocoin),
                                               singleStep(100000) // satoshis
     {
         setAlignment(Qt::AlignRight);
@@ -62,11 +62,11 @@ public:
         emit valueChanged();
     }
 
-    void stepBy(int steps)
+    void stepBy(int stmagocoin)
     {
         bool valid = false;
         CAmount val = value(&valid);
-        val = val + steps * singleStep;
+        val = val + stmagocoin * singleStep;
         val = qMin(qMax(val, CAmount(0)), BitcoinUnits::maxMoney());
         setValue(val);
     }
@@ -96,7 +96,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = fm.width(BitcoinUnits::format(BitcoinUnits::Eps, BitcoinUnits::maxMoney(), false, BitcoinUnits::separatorAlways));
+            int w = fm.width(BitcoinUnits::format(BitcoinUnits::Magocoin, BitcoinUnits::maxMoney(), false, BitcoinUnits::separatorAlways));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;
@@ -158,7 +158,7 @@ protected:
     StepEnabled stepEnabled() const
     {
         StepEnabled rv = 0;
-        if (isReadOnly()) // Disable steps when AmountSpinBox is read-only
+        if (isReadOnly()) // Disable stmagocoin when AmountSpinBox is read-only
             return StepNone;
         if (text().isEmpty()) // Allow step-up with empty field
             return StepUpEnabled;

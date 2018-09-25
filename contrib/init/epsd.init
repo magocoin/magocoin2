@@ -1,31 +1,31 @@
 #!/bin/bash
 #
-#  epsd The EPS core server.
+#  magocoind The magocoin core server.
 #
 #
 # chkconfig: 345 80 20
-# description: epsd
-# processname: epsd
+# description: magocoind
+# processname: magocoind
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/epsd, see below
-if [ -f /etc/sysconfig/epsd ]; then
-        . /etc/sysconfig/epsd
+# you can override defaults in /etc/sysconfig/magocoind, see below
+if [ -f /etc/sysconfig/magocoind ]; then
+        . /etc/sysconfig/magocoind
 fi
 
 RETVAL=0
 
-prog=epsd
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/epsd
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/epsd}
+prog=magocoind
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/magocoind
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/magocoind}
 
-# epsd defaults to /usr/bin/epsd, override with BITCOIND_BIN
-bitcoind=${BITCOIND_BIN-/usr/bin/epsd}
+# magocoind defaults to /usr/bin/magocoind, override with BITCOIND_BIN
+bitcoind=${BITCOIND_BIN-/usr/bin/magocoind}
 
-# epsd opts default to -disablewallet, override with BITCOIND_OPTS
+# magocoind opts default to -disablewallet, override with BITCOIND_OPTS
 bitcoind_opts=${BITCOIND_OPTS}
 
 start() {

@@ -476,7 +476,7 @@ void CTxMemPool::removeCoinbaseSpends(const CCoinsViewCache* pcoins, unsigned in
                 continue;
             const CCoins* coins = pcoins->AccessCoins(txin.prevout.hash);
             if (fSanityCheck) assert(coins);
-            if (!coins || ((coins->IsCoinBase() || coins->IsCoinStake()) && nMemPoolHeight - coins->nHeight < Params().COINBASE_MATURITY())) {
+            if (!coins || ((coins->IsCoinBase() || coins->IsCoinStake()) && nMemPoolHeight - coins->nHeight < (unsigned)Params().COINBASE_MATURITY())) {
                 transactionsToRemove.push_back(tx);
                 break;
             }
@@ -580,20 +580,20 @@ void CTxMemPool::check(const CCoinsViewCache* pcoins) const
             UpdateCoins(tx, state, mempoolDuplicate, undo, 1000000);
         }
     }
-    unsigned int stepsSinceLastRemove = 0;
+    unsigned int stmagocoinSinceLastRemove = 0;
     while (!waitingOnDependants.empty()) {
         const CTxMemPoolEntry* entry = waitingOnDependants.front();
         waitingOnDependants.pop_front();
         CValidationState state;
         if (!mempoolDuplicate.HaveInputs(entry->GetTx())) {
             waitingOnDependants.push_back(entry);
-            stepsSinceLastRemove++;
-            assert(stepsSinceLastRemove < waitingOnDependants.size());
+            stmagocoinSinceLastRemove++;
+            assert(stmagocoinSinceLastRemove < waitingOnDependants.size());
         } else {
             assert(CheckInputs(entry->GetTx(), state, mempoolDuplicate, false, 0, false, NULL));
             CTxUndo undo;
             UpdateCoins(entry->GetTx(), state, mempoolDuplicate, undo, 1000000);
-            stepsSinceLastRemove = 0;
+            stmagocoinSinceLastRemove = 0;
         }
     }
     for (std::map<COutPoint, CInPoint>::const_iterator it = mapNextTx.begin(); it != mapNextTx.end(); it++) {

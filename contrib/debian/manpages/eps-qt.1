@@ -1,20 +1,20 @@
-.TH Eps-QT "1" "February 2017" "eps-qt 1"
+.TH Magocoin-QT "1" "February 2017" "magocoin-qt 1"
 .SH NAME
-eps-qt \- peer-to-peer network based digital currency
+magocoin-qt \- peer-to-peer network based digital currency
 .SH DESCRIPTION
 .SS "Usage:"
 .IP
-eps\-qt [command\-line options]
+magocoin\-qt [command\-line options]
 .SH OPTIONS
 .TP
 \-?
 This help message
 .TP
 \fB\-conf=\fR<file>
-Specify configuration file (default: eps.conf)
+Specify configuration file (default: magocoin.conf)
 .TP
 \fB\-pid=\fR<file>
-Specify pid file (default: epsd.pid)
+Specify pid file (default: magocoind.pid)
 .TP
 \fB\-gen\fR
 Generate coins
@@ -41,7 +41,7 @@ Use proxy to reach tor hidden services (default: same as \fB\-proxy\fR)
 Allow DNS lookups for \fB\-addnode\fR, \fB\-seednode\fR and \fB\-connect\fR
 .TP
 \fB\-port=\fR<port>
-Listen for connections on <port> (default: 48481 or testnet: 48483)
+Listen for connections on <port> (default: 22123 or testnet: 48483)
 .TP
 \fB\-maxconnections=\fR<n>
 Maintain at most <n> connections to peers (default: 125)
@@ -122,7 +122,7 @@ Username for JSON\-RPC connections
 Password for JSON\-RPC connections
 .TP
 \fB\-rpcport=\fR<port>
-Listen for JSON\-RPC connections on <port> (default: 48481 or testnet: 48483)
+Listen for JSON\-RPC connections on <port> (default: 22123 or testnet: 48483)
 .TP
 \fB\-rpcallowip=\fR<ip>
 Allow JSON\-RPC connections from specified IP address

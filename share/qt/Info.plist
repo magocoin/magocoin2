@@ -17,7 +17,7 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>1.0.0, Copyright © 2009-2018 The Bitcoin Core developers, 2014-2018 The Dash Core developers, 2015-2018 The Eps developers</string>
+  <string>1.0.0, Copyright © 2009-2018 The Bitcoin Core developers, 2014-2018 The Dash Core developers, 2015-2018 The Magocoin developers</string>
 
   <key>CFBundleShortVersionString</key>
   <string>1.0.0</string>
@@ -29,10 +29,10 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Eps-Qt</string>
+  <string>Magocoin-Qt</string>
 
   <key>CFBundleIdentifier</key>
-  <string>io.eps.Eps-Qt</string>
+  <string>io.magocoin.Magocoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -40,10 +40,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.eps.EpsPayment</string>
+      <string>io.magocoin.MagocoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>eps</string>
+        <string>magocoin</string>
       </array>
     </dict>
   </array>
@@ -52,9 +52,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>io.eps.paymentrequest</string>
+      <string>io.magocoin.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Eps payment request</string>
+      <string>Magocoin payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -62,10 +62,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-eps-payment-request</string>
+        <string>application/x-magocoin-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>epspaymentrequest</string>
+          <string>magocoinpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -78,7 +78,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>io.eps.paymentrequest</string>
+        <string>io.magocoin.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -75,7 +75,7 @@ enum AvailableCoinsType {
     ALL_COINS = 1,
     ONLY_DENOMINATED = 2,
     ONLY_NOT5000IFMN = 3,
-    ONLY_NONDENOMINATED_NOT5000IFMN = 4, // ONLY_NONDENOMINATED and not 1000 EPS at the same time
+    ONLY_NONDENOMINATED_NOT5000IFMN = 4, // ONLY_NONDENOMINATED and not 1000 magocoin at the same time
     ONLY_5000 = 5                        // find masternode outputs including locked ones (use with caution)
 };
 
@@ -448,7 +448,7 @@ public:
     bool IsDenominatedAmount(CAmount nInputAmount) const;
 
     isminetype IsMine(const CTxIn& txin) const;
-    bool IsMine(const string& eps_address); 
+    bool IsMine(const string& magocoin_address); 
     CAmount GetDebit(const CTxIn& txin, const isminefilter& filter) const;
     isminetype IsMine(const CTxOut& txout) const
     {

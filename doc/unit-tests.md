@@ -6,13 +6,13 @@ and tests weren't explicitly disabled.
 
 After configuring, they can be run with 'make check'.
 
-To run the epsd tests manually, launch src/test/test_eps .
+To run the magocoind tests manually, launch src/test/test_magocoin .
 
-To add more epsd tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
+To add more magocoind tests, add `BOOST_AUTO_TEST_CASE` functions to the existing
 .cpp files in the test/ directory or add new .cpp files that
 implement new BOOST_AUTO_TEST_SUITE sections.
 
-To run the eps-qt tests manually, launch src/qt/test/eps-qt_test
+To run the magocoin-qt tests manually, launch src/qt/test/magocoin-qt_test
 
-To add more eps-qt tests, add them to the `src/qt/test/` directory and
+To add more magocoin-qt tests, add them to the `src/qt/test/` directory and
 the `src/qt/test/test_main.cpp` file.

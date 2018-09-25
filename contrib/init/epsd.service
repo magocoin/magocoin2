@@ -1,19 +1,19 @@
 [Unit]
-Description=EPS's distributed currency daemon
+Description=magocoin's distributed currency daemon
 After=network.target
 
 [Service]
-User=eps
-Group=eps
+User=magocoin
+Group=magocoin
 
 Type=forking
-PIDFile=/var/lib/epsd/epsd.pid
+PIDFile=/var/lib/magocoind/magocoind.pid
 
-ExecStart=/usr/bin/epsd -daemon -pid=/var/lib/epsd/epsd.pid \
-          -conf=/etc/eps/eps.conf -datadir=/var/lib/epsd
+ExecStart=/usr/bin/magocoind -daemon -pid=/var/lib/magocoind/magocoind.pid \
+          -conf=/etc/magocoin/magocoin.conf -datadir=/var/lib/magocoind
 
-ExecStop=-/usr/bin/eps-cli -conf=/etc/eps/eps.conf \
-         -datadir=/var/lib/epsd stop
+ExecStop=-/usr/bin/magocoin-cli -conf=/etc/magocoin/magocoin.conf \
+         -datadir=/var/lib/magocoind stop
 
 Restart=always
 PrivateTmp=true

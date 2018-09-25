@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/eps-config.h"
+#include "config/magocoin-config.h"
 #endif
 
 #include "compat.h"
@@ -34,14 +34,14 @@
 
 using namespace std;
 
-//EPS only features
+//magocoin only features
 
 extern bool fMasterNode;
 extern bool fLiteMode;
 extern bool fEnableSwiftTX;
 extern int nSwiftTXDepth;
 extern int nObfuscationRounds;
-extern int nAnonymizeEpsAmount;
+extern int nAnonymizeMagocoinAmount;
 extern int nLiquidityProvider;
 extern bool fEnableObfuscation;
 extern int64_t enforceMasternodePaymentsTime;
@@ -218,7 +218,7 @@ void RenameThread(const char* name);
 template <typename Callable>
 void LoopForever(const char* name, Callable func, int64_t msecs)
 {
-    std::string s = strprintf("eps-%s", name);
+    std::string s = strprintf("magocoin-%s", name);
     RenameThread(s.c_str());
     LogPrintf("%s thread start\n", name);
     try {
@@ -244,7 +244,7 @@ void LoopForever(const char* name, Callable func, int64_t msecs)
 template <typename Callable>
 void TraceThread(const char* name, Callable func)
 {
-    std::string s = strprintf("eps-%s", name);
+    std::string s = strprintf("magocoin-%s", name);
     RenameThread(s.c_str());
     try {
         LogPrintf("%s thread start\n", name);

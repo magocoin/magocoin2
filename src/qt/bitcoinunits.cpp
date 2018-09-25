@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,18 +20,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(Eps);
-    unitlist.append(mEps);
-    unitlist.append(uEps);
+    unitlist.append(Magocoin);
+    unitlist.append(mMagocoin);
+    unitlist.append(uMagocoin);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case Eps:
-    case mEps:
-    case uEps:
+    case Magocoin:
+    case mMagocoin:
+    case uMagocoin:
         return true;
     default:
         return false;
@@ -41,12 +41,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case Eps:
-        return QString("eps");
-    case mEps:
-        return QString("meps");
-    case uEps:
-        return QString::fromUtf8("ueps");
+    case Magocoin:
+        return QString("magocoin");
+    case mMagocoin:
+        return QString("mmagocoin");
+    case uMagocoin:
+        return QString::fromUtf8("umagocoin");
     default:
         return QString("???");
     }
@@ -56,23 +56,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case Eps:
-            return QString("Eps");
-        case mEps:
-            return QString("mEps");
-        case uEps:
-            return QString::fromUtf8("μEps");
+        case Magocoin:
+            return QString("Magocoin");
+        case mMagocoin:
+            return QString("mMagocoin");
+        case uMagocoin:
+            return QString::fromUtf8("μMagocoin");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case Eps:
-            return QString("tEps");
-        case mEps:
-            return QString("mtEps");
-        case uEps:
-            return QString::fromUtf8("μtEps");
+        case Magocoin:
+            return QString("tMagocoin");
+        case mMagocoin:
+            return QString("mtMagocoin");
+        case uMagocoin:
+            return QString::fromUtf8("μtMagocoin");
         default:
             return QString("???");
         }
@@ -83,23 +83,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case Eps:
-            return QString("Eps");
-        case mEps:
-            return QString("Milli-Eps (1 / 1" THIN_SP_UTF8 "000)");
-        case uEps:
-            return QString("Micro-Eps (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case Magocoin:
+            return QString("Magocoin");
+        case mMagocoin:
+            return QString("Milli-Magocoin (1 / 1" THIN_SP_UTF8 "000)");
+        case uMagocoin:
+            return QString("Micro-Magocoin (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case Eps:
-            return QString("TestEpss");
-        case mEps:
-            return QString("Milli-TestEps (1 / 1" THIN_SP_UTF8 "000)");
-        case uEps:
-            return QString("Micro-TestEps (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case Magocoin:
+            return QString("TestMagocoins");
+        case mMagocoin:
+            return QString("Milli-TestMagocoin (1 / 1" THIN_SP_UTF8 "000)");
+        case uMagocoin:
+            return QString("Micro-TestMagocoin (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -109,11 +109,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case Eps:
+    case Magocoin:
         return 100000000;
-    case mEps:
+    case mMagocoin:
         return 100000;
-    case uEps:
+    case uMagocoin:
         return 100;
     default:
         return 100000000;
@@ -123,11 +123,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case Eps:
+    case Magocoin:
         return 8;
-    case mEps:
+    case mMagocoin:
         return 5;
-    case uEps:
+    case uMagocoin:
         return 2;
     default:
         return 0;

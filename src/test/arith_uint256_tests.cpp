@@ -371,7 +371,7 @@ BOOST_AUTO_TEST_CASE( divide )
 
 bool almostEqual(double d1, double d2)
 {
-    return fabs(d1-d2) <= 4*fabs(d1)*std::numeric_limits<double>::epsilon();
+    return fabs(d1-d2) <= 4*fabs(d1)*std::numeric_limits<double>::magocoinilon();
 }
 
 BOOST_AUTO_TEST_CASE( methods ) // GetHex SetHex size() GetLow64 GetSerializeSize, Serialize, Unserialize

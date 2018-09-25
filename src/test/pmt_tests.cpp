@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(pmt_test1)
             // check that it contains the matched transactions (in the same order!)
             BOOST_CHECK(vMatchTxid1 == vMatchTxid2);
 
-            // check that random bit fleps break the authentication
+            // check that random bit flmagocoin break the authentication
             for (int j=0; j<4; j++) {
                 CPartialMerkleTreeTester pmt3(pmt2);
                 pmt3.Damage();

@@ -136,7 +136,7 @@ give_advice ()
 
   printf '%s\n' "'$1' is $msg."
 
-  configure_deps="'configure.ac' or m4 files included by 'configure.ac'"
+  configure_dmagocoin="'configure.ac' or m4 files included by 'configure.ac'"
   case $normalized_program in
     autoconf*)
       echo "You should only need it if you modified 'configure.ac',"
@@ -145,17 +145,17 @@ give_advice ()
       ;;
     autoheader*)
       echo "You should only need it if you modified 'acconfig.h' or"
-      echo "$configure_deps."
+      echo "$configure_dmagocoin."
       program_details 'autoheader'
       ;;
     automake*)
       echo "You should only need it if you modified 'Makefile.am' or"
-      echo "$configure_deps."
+      echo "$configure_dmagocoin."
       program_details 'automake'
       ;;
     aclocal*)
       echo "You should only need it if you modified 'acinclude.m4' or"
-      echo "$configure_deps."
+      echo "$configure_dmagocoin."
       program_details 'aclocal'
       ;;
    autom4te*)

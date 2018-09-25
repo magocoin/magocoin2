@@ -181,7 +181,7 @@
       <string>Asks</string>
      </property>
     </widget>
-    <widget class="QLabel" name="EpsSupply">
+    <widget class="QLabel" name="MagocoinSupply">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -197,7 +197,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="EpsDemand">
+    <widget class="QLabel" name="MagocoinDemand">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -432,7 +432,7 @@
     <attribute name="title">
      <string>Buy</string>
     </attribute>
-    <widget class="QPushButton" name="BuyEps">
+    <widget class="QPushButton" name="BuyMagocoin">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -442,10 +442,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Buy Eps</string>
+      <string>Buy Magocoin</string>
      </property>
      <property name="icon">
-      <iconset resource="../eps.qrc">
+      <iconset resource="../magocoin.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -512,7 +512,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Eps</string>
+      <string>Magocoin</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -1704,10 +1704,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Eps</string>
+      <string>Magocoin</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="UnitsInputEps">
+    <widget class="QLineEdit" name="UnitsInputMagocoin">
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -1741,7 +1741,7 @@
       </font>
      </property>
     </widget>
-    <widget class="QPushButton" name="SellEpsBTN">
+    <widget class="QPushButton" name="SellMagocoinBTN">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1751,10 +1751,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Sell Eps</string>
+      <string>Sell Magocoin</string>
      </property>
      <property name="icon">
-      <iconset resource="../eps">
+      <iconset resource="../magocoin">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -1777,12 +1777,12 @@
          </font>
         </property>
         <property name="text">
-         <string>Eps Available:</string>
+         <string>Magocoin Available:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="EpsAvailableLabel">
+       <widget class="QLabel" name="MagocoinAvailableLabel">
         <property name="palette">
          <palette>
           <active>
@@ -2213,7 +2213,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="labelEps">
+       <widget class="QLabel" name="labelMagocoin">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2221,7 +2221,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Eps</string>
+         <string>Magocoin</string>
         </property>
        </widget>
       </item>
@@ -2733,7 +2733,7 @@
       <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QLabel" name="EpsBalanceLabel">
+    <widget class="QLabel" name="MagocoinBalanceLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2762,7 +2762,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Eps Balance:</string>
+      <string>Magocoin Balance:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -2784,7 +2784,7 @@
       <string>BTC Balance:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="EpsAvailableLabel_2">
+    <widget class="QLabel" name="MagocoinAvailableLabel_2">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2813,7 +2813,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Eps Available:</string>
+      <string>Magocoin Available:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -2832,10 +2832,10 @@
       </font>
      </property>
      <property name="text">
-      <string>Eps Pending:</string>
+      <string>Magocoin Pending:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="EpsPendingLabel">
+    <widget class="QLabel" name="MagocoinPendingLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2928,7 +2928,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Bittrex Eps Deposit Address:</string>
+      <string>Bittrex Magocoin Deposit Address:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="GenDepositBTN">
@@ -2941,10 +2941,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Generate Eps Deposit Address</string>
+      <string>Generate Magocoin Deposit Address</string>
      </property>
      <property name="icon">
-      <iconset resource="../eps.qrc">
+      <iconset resource="../magocoin.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3155,7 +3155,7 @@
        <string notr="true">border: 1px solid #61696c;margin-left:4px;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnConvertEps">
+     <widget class="QPushButton" name="btnConvertMagocoin">
       <property name="geometry">
        <rect>
         <x>260</x>
@@ -3206,7 +3206,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../eps.qrc">:/icons/transaction_1</pixmap>
+       <pixmap resource="../magocoin.qrc">:/icons/transaction_1</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -3253,7 +3253,7 @@
       <string>Update API Keys</string>
      </property>
      <property name="icon">
-      <iconset resource="../eps.qrc">
+      <iconset resource="../magocoin.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3408,7 +3408,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../eps.qrc"/>
+  <include location="../magocoin.qrc"/>
  </resources>
  <connections/>
 </ui>

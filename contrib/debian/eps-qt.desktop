@@ -1,12 +1,12 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=Eps
-Comment=Eps P2P Cryptocurrency
-Comment[fr]=Eps, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Eps, eşten eşe kriptografik sanal para birimi
-Exec=eps-qt %u
+Name=Magocoin
+Comment=Magocoin P2P Cryptocurrency
+Comment[fr]=Magocoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Magocoin, eşten eşe kriptografik sanal para birimi
+Exec=magocoin-qt %u
 Terminal=false
 Type=Application
-Icon=eps128
-MimeType=x-scheme-handler/eps;
+Icon=magocoin128
+MimeType=x-scheme-handler/magocoin;
 Categories=Office;Finance;

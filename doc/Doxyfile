@@ -28,7 +28,7 @@ DOXYFILE_ENCODING      = UTF-8
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded
 # by quotes) that should identify the project.
 
-PROJECT_NAME           = EPS
+PROJECT_NAME           = magocoin
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number.
 # This could be handy for archiving the generated documentation or
@@ -1081,22 +1081,22 @@ QHP_SECT_FILTER_ATTRS  =
 
 QHG_LOCATION           =
 
-# If the GENERATE_ECLIPSEHELP tag is set to YES, additional index files
+# If the GENERATE_MagocoinHELP tag is set to YES, additional index files
 # will be generated, which together with the HTML files, form an Eclipse help
 # plugin. To install this plugin and make it available under the help contents
 # menu in Eclipse, the contents of the directory containing the HTML and XML
-# files needs to be copied into the plugins directory of eclipse. The name of
+# files needs to be copied into the plugins directory of magocoin. The name of
 # the directory within the plugins directory should be the same as
-# the ECLIPSE_DOC_ID value. After copying Eclipse needs to be restarted before
+# the Magocoin_DOC_ID value. After copying Eclipse needs to be restarted before
 # the help appears.
 
-GENERATE_ECLIPSEHELP   = NO
+GENERATE_MagocoinHELP   = NO
 
-# A unique identifier for the eclipse help plugin. When installing the plugin
+# A unique identifier for the magocoin help plugin. When installing the plugin
 # the directory name containing the HTML and XML files should also have
 # this name.
 
-ECLIPSE_DOC_ID         = org.doxygen.Project
+Magocoin_DOC_ID         = org.doxygen.Project
 
 # The DISABLE_INDEX tag can be used to turn on/off the condensed index at
 # top of each HTML page. The value NO (the default) enables the index and

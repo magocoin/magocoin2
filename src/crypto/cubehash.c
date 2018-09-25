@@ -466,7 +466,7 @@ static const sph_u32 IV512[] = {
  * There is no need to unroll all 16 rounds. The word-swapping permutation
  * is an involution, so we need to unroll an even number of rounds. On
  * "big" systems, unrolling 4 rounds yields about 97% of the speed
- * achieved with full unrolling; and it keeps the code more compact
+ * achieved with full unrolling; and it kemagocoin the code more compact
  * for small architectures.
  */
 

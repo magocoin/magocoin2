@@ -1,12 +1,12 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 ECLIPSE Developers
+// Copyright (c) 2018 Magocoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/eps-config.h"
+#include "config/magocoin-config.h"
 #endif
 
 #include "optionsmodel.h"
@@ -62,7 +62,7 @@ void OptionsModel::Init()
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::Eps);
+        settings.setValue("nDisplayUnit", BitcoinUnits::Magocoin);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -76,11 +76,11 @@ void OptionsModel::Init()
     if (!settings.contains("nObfuscationRounds"))
         settings.setValue("nObfuscationRounds", 2);
 
-    if (!settings.contains("nAnonymizeEpsAmount"))
-        settings.setValue("nAnonymizeEpsAmount", 1000);
+    if (!settings.contains("nAnonymizeMagocoinAmount"))
+        settings.setValue("nAnonymizeMagocoinAmount", 1000);
 
     nObfuscationRounds = settings.value("nObfuscationRounds").toLongLong();
-    nAnonymizeEpsAmount = settings.value("nAnonymizeEpsAmount").toLongLong();
+    nAnonymizeMagocoinAmount = settings.value("nAnonymizeMagocoinAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -147,8 +147,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nObfuscationRounds"))
         SoftSetArg("-obfuscationrounds", settings.value("nObfuscationRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeEpsAmount"))
-        SoftSetArg("-anonymizeepsamount", settings.value("nAnonymizeEpsAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeMagocoinAmount"))
+        SoftSetArg("-anonymizemagocoinamount", settings.value("nAnonymizeMagocoinAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -159,7 +159,7 @@ void OptionsModel::Reset()
 
     // Remove all entries from our QSettings object
     settings.clear();
-    resetSettings = true; // Needed in eps.cpp during shotdown to also remove the window positions
+    resetSettings = true; // Needed in magocoin.cpp during shotdown to also remove the window positions
 
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
@@ -228,8 +228,8 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             return settings.value("nThreadsScriptVerif");
         case ObfuscationRounds:
             return QVariant(nObfuscationRounds);
-        case AnonymizeEpsAmount:
-            return QVariant(nAnonymizeEpsAmount);
+        case AnonymizeMagocoinAmount:
+            return QVariant(nAnonymizeMagocoinAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -338,10 +338,10 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             settings.setValue("nObfuscationRounds", nObfuscationRounds);
             emit obfuscationRoundsChanged(nObfuscationRounds);
             break;
-        case AnonymizeEpsAmount:
-            nAnonymizeEpsAmount = value.toInt();
-            settings.setValue("nAnonymizeEpsAmount", nAnonymizeEpsAmount);
-            emit anonymizeEpsAmountChanged(nAnonymizeEpsAmount);
+        case AnonymizeMagocoinAmount:
+            nAnonymizeMagocoinAmount = value.toInt();
+            settings.setValue("nAnonymizeMagocoinAmount", nAnonymizeMagocoinAmount);
+            emit anonymizeMagocoinAmountChanged(nAnonymizeMagocoinAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

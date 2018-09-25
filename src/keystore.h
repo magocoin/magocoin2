@@ -51,7 +51,7 @@ typedef std::map<CKeyID, CKey> KeyMap;
 typedef std::map<CScriptID, CScript> ScriptMap;
 typedef std::set<CScript> WatchOnlySet;
 
-/** Basic key store, that keeps keys in an address->secret map */
+/** Basic key store, that kemagocoin keys in an address->secret map */
 class CBasicKeyStore : public CKeyStore
 {
 protected:
